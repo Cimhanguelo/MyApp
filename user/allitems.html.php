@@ -33,14 +33,12 @@
                     <a href="."><i class="fas fa-user-circle"></i> Profile</a>
                 </li>
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-clipboard-list"></i> Product Sales Info</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-clipboard-list"></i> Symptom Pain Info</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
                             <a href="?additem">Add New</a>
                         </li>
-                        <li>
-                            <a href="?allitems">Product Sales</a>
-                        </li>
+            
                     </ul>
                 </li>
                
