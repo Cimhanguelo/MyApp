@@ -19,23 +19,18 @@ if(empty($_POST["username"]) || empty($_POST["password"]))
     //$result = $conn->query($sql);
    // $result=mysqli_query($db,$sql);
 if(isset($usertype) && $usertype=="Regular User"){
-    $query = "SELECT userid, fullname, username, email_address, business_name, business_type, business_address, postcode, 
-    phone, date(created_at) as date FROM users WHERE email_address=? OR username=? AND password=? LIMIT 1";
+    $query = "SELECT user_id, full_name, username, email, 
+     date(date) as date FROM user WHERE email=? OR username=? AND password=? LIMIT 1";
     $stmt = $db->prepare($query);
     if($stmt){
         $stmt->bind_param('sss', $username, $username, $password);
         $stmt->execute();
-        $stmt->bind_result($userid, $fullname, $username, $email, $bus_name, $bus_type, $bus_address, $postcode, $phone, $date );
+        $stmt->bind_result($userid, $fullname, $username, $email,  $date );
         $stmt->fetch();
         $_SESSION['email'] = $email;
         $_SESSION['userid'] = $userid;
         $_SESSION['fullname'] = $fullname;
         $_SESSION['username'] = $username;
-        $_SESSION['bus_name'] = $bus_name;
-        $_SESSION['bus_type'] = $bus_type;
-        $_SESSION['bus_address'] = $bus_address;
-        $_SESSION['postcode'] = $postcode;
-        $_SESSION['phone'] = $phone;
         $_SESSION['date'] = $date;
         //check if user is found
         if(empty($userid) && empty($username)){

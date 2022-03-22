@@ -7,7 +7,7 @@
  */
 
 $servername = "localhost";
-$dbname='stockproper';
+$dbname='pain_diairy';
 $username = "root";
 $password = "";
 

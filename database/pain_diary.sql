@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `pain_diairy`.`user` (
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `active` TINYINT NOT NULL,
-  `date` DATETIME NOT NULL,
+  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
 
@@ -38,7 +38,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `pain_diairy`.`symptom` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
-  `date` DATETIME NULL,
+  `date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -51,10 +51,8 @@ CREATE TABLE IF NOT EXISTS `pain_diairy`.`user_symptom` (
   `user_id` INT NOT NULL,
   `symptom_id` INT NOT NULL,
   `pain_level` INT NULL,
-  `date` DATETIME NULL,
-  PRIMARY KEY (`id`, `user_id`, `symptom_id`),
-  INDEX `fk_user_has_symptom_symptom1_idx` (`symptom_id` ASC) VISIBLE,
-  INDEX `fk_user_has_symptom_user_idx` (`user_id` ASC) VISIBLE,
+  `date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
   CONSTRAINT `fk_user_has_symptom_user`
     FOREIGN KEY (`user_id`)
     REFERENCES `pain_diairy`.`user` (`user_id`)
