@@ -17,5 +17,5 @@ if(isset($_GET['logout'])){
 }
 
 
-include 'allitems.html.php';
+include 'dashboard.html.php';
 ?>
