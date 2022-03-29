@@ -15,9 +15,6 @@
     <link rel="stylesheet" href="assets/css/landy-iconfont.css">
     <!-- Google fonts - Open Sans-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
-    <!-- owl carousel-->
-    <link rel="stylesheet" href="assets/vendor/owl.carousel/assets/owl.carousel.css">
-    <link rel="stylesheet" href="assets/vendor/owl.carousel/assets/owl.theme.default.css">
     <!-- stylesheet-->
     <link rel="stylesheet" href="assets/css/style.css" id="theme-stylesheet">
     <!-- Favicon-->
@@ -28,13 +25,15 @@
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top"><a class="logo" href="index.html">
-        <img src="assets/images/pain_diary_logo.png" alt="paindiary" height="70">
+        <img src="assets/images/pain_diary_logo.png" alt="paindiary" height="60">
       </a>
         <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
           </ul>
-          <div class="CTA"><a href="#" data-toggle="modal" data-target="#exampleModallogin" class="btn btn-outline-primary" style="margin-left: 20px; border-radius: 2px;">Login</a></div>
+          <div class="navbar-text" style="margin-left: 65%;">
+            <a href="#" data-toggle="modal" data-target="#exampleModallogin" class="btn btn-outline-primary" style="margin-left: 20px; border-radius: 2px;">Login</a>
+          </div>
           <div class="navbar-text">   
             <!-- Button trigger modal--><a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary navbar-btn btn-shadow" style="border-radius: 2px;">Register</a>
           </div>
@@ -51,7 +50,7 @@
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
-            <form id="signupform" method="post" action="signup.php">
+            <form id="signupform" method="post" action="register.php">
               <div class="form-group">
                 <label for="fullname">Full Name</label>
                 <input type="text" name="fullname" placeholder="Full Name" id="fullname" required>
@@ -100,7 +99,7 @@
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
           </div>
           <div class="modal-body">
-            <form id="signinform" method="post" action="login.php">
+            <form id="signupform" method="post" action="signin.php">
               <div class="form-group">
                 <label for="username">User Name</label>
                 <input type="text" name="username" placeholder="User Name" id="username">
@@ -127,7 +126,7 @@
           <div class="col-lg-6 text order-2 order-lg-1">
             <h1>Pain-Diary</h1>
             <h5>Welcome to Pain Diary</h5>
-            <form id="signinform" method="post" action="login.php">
+            <form id="signupform" method="post" action="signin.php">
               <div class="form-group">
                 <label for="username">User Name</label>
                 <input type="text" name="username" placeholder="User Name" id="username">
@@ -137,11 +136,11 @@
                 <input type="password" name="password" placeholder="Password" id="password">
               </div>
               <div class="form-group">
-                  <a href="password-reset/">reset password</a>
-              </div>
-              <div class="form-group">
                 <button type="submit" class="submit btn btn-primary btn-shadow " style="border-radius: 2px;">Login</button>
               </div>
+              <div class="form-group">
+                <a href="password-reset/">reset password</a>
+            </div>
             </form>
           </div>
           <div class="col-lg-6 order-1 order-lg-2"><img src="assets/images/pain-image1.jpg" alt="..." class="img-fluid"></div>

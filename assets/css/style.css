@@ -106,28 +106,9 @@ strong {
   box-shadow: -5.665px 9.429px 35px 0px rgba(0, 0, 0, 0.2);
 }
 
-.owl-theme .owl-nav {
-  margin-top: 0;
-}
-
-.owl-theme .owl-nav [class*='owl-'] {
-  background: none;
-  color: #222;
-  font-size: 2rem;
-  margin: 0 20px;
-}
-
-.owl-theme .owl-nav [class*='owl-'].disabled {
-  color: #aaa;
-}
-
-.owl-theme .owl-nav [class*='owl-']:hover {
-  background: none;
-  color: #333;
-}
 
 section header {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
 
 .scrollUp {
@@ -265,13 +246,14 @@ section header {
   width: 100%;
   display: block;
   padding: 10px 20px;
-  border-radius: 50px;
+  border-radius: 2px;
   border: 1px solid #eee;
   outline: none;
+  background-color: lightgray;
 }
 
 #signupform input:focus {
-  border-color: #5989e5;
+  border-color: #eee;
 }
 
 #signupform input::-moz-placeholder {
