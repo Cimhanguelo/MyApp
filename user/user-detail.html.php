@@ -52,9 +52,9 @@
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
-        <ul class="nav flex-column" style="margin-top:35px">
+        <ul class="nav flex-column" style="margin-top:45px">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
+            <a class="nav-link active" href=".">
               <span data-feather="home"></span>
               Dashboard
             </a>
@@ -72,7 +72,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="?profile">
+            <a class="nav-link active" aria-current="page" href="?profile">
               <span data-feather="user"></span>
               Profile
             </a>
@@ -104,76 +104,66 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group me-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-          </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
-        </div>
+        <h1 class="h2">User Profile</h1>
       </div>
-
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-      <h2>Symptom Details</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">S_NO</th>
-              <th scope="col">Symptom</th>
-              <th scope="col">Paing Severity</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Head Ache</td>
-              <td>4</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            
-          </tbody>
-        </table>
-      </div>
+                    <div class="row gutters-sm">
+                        <div class="col-md-8">
+                          <div class="card mb-3">
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Full Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  <?php echo $_SESSION['fullname']; ?>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Username</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  <?php echo $_SESSION['username']; ?>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  <?php echo $_SESSION['email']; ?>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Date of Birth</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  <?php echo $_SESSION['dob']; ?>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Gender</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  <?php echo $_SESSION['gender']; ?>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row">
+                                <div class="col-sm-12">
+                                  <a class="btn btn-info "  href="?update-profile">Update Profile</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
     </main>
   </div>
 </div>
@@ -233,3 +223,4 @@
     <script src="../assets/js/dashboard.js"></script>
   </body>
 </html>
+

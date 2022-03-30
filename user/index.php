@@ -16,6 +16,18 @@ if(isset($_GET['logout'])){
     exit();
 }
 
+//open update profile form
+if(isset($_GET['update-profile'])){
+    include 'user-detail-form.html.php';
+    exit();
+}
+
+//open profile 
+if(isset($_GET['profile'])){
+    include 'user-detail.html.php';
+    exit();
+}
+
 
 include 'dashboard.html.php';
 ?>

@@ -18,18 +18,19 @@ if(empty($_POST["username"]) || empty($_POST["password"]))
     //$result = $conn->query($sql);
    // $result=mysqli_query($db,$sql);
     $query = "SELECT user_id, full_name, username, email, 
-     date(date) as date FROM user WHERE email=? OR username=? AND password=? LIMIT 1";
+     dob, gender FROM user WHERE email=? OR username=? AND password=? LIMIT 1";
     $stmt = $db->prepare($query);
     if($stmt){
         $stmt->bind_param('sss', $username, $username, $password);
         $stmt->execute();
-        $stmt->bind_result($userid, $fullname, $username, $email,  $date );
+        $stmt->bind_result($userid, $fullname, $username, $email,  $dob, $gender );
         $stmt->fetch();
         $_SESSION['email'] = $email;
         $_SESSION['userid'] = $userid;
         $_SESSION['fullname'] = $fullname;
         $_SESSION['username'] = $username;
-        $_SESSION['date'] = $date;
+        $_SESSION['dob'] = $dob;
+        $_SESSION['gender'] = $gender;
         //check if user is found
         if(empty($userid) && empty($username)){
             $error  = "Incorrect username or password";
