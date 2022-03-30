@@ -1,3 +1,5 @@
+
+                    
 <!doctype html>
 <html lang="en">
   <head>
@@ -106,75 +108,11 @@
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">User Profile</h1>
       </div>
-                    <div class="row gutters-sm">
-                        <div class="col-md-8">
-                          <div class="card mb-3">
-                          <div class="card-body">
-                                <?php if(isset($_SESSION['message'])) {  ?>
-                                    <div class="alert alert-warning">
-                                        <h5><?php echo $_SESSION['message'] ?></h5>
-                                    </div>
-                                <?php } ?>
-                              <form method="POST">
-                              <div class="row">
-                                <div class="col-sm-3">
-                                  <h6 class="mb-0">Full Name</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                  <input type="text" class="form-control" name="fullname" value="<?php echo $_SESSION['fullname']; ?>" />
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-3">
-                                  <h6 class="mb-0">Username</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" name="username" value="<?php echo $_SESSION['username']; ?>" />
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-3">
-                                  <h6 class="mb-0">Email</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" name="email" value="<?php echo $_SESSION['email']; ?>" />
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-3">
-                                  <h6 class="mb-0">Date of Birth</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                <input type="date" class="form-control" name="dob" value="<?php echo $_SESSION['dob']; ?>" />
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-3">
-                                  <h6 class="mb-0">Gender</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                  <select class="form-control" name="gender">
-                                    <option>Select</option>
-                                    <option value="Male" selected>Male</option>
-                                    <option value="Female">Female</option>
-                                  </select>
-                                </div>
-                              </div>
-                              <hr>
-                              <div class="row">
-                                <div class="col-sm-12">
-                                    <input type="hidden" name="userid" value="<?php echo $_SESSION['userid']; ?>" />
-                                  <input type="submit" class="btn btn-success " name="action" value="Submit" />
-                            </form>
-                                </div>
-                              </div>
-                          </div>
-                        </div>
-                    </div>
+            <div class="row gutters-sm">
+                <h4><?php echo $_SESSION['message']; ?></h4>
+                <a href ="<?php echo $back; unset($_SESSION['message']) ?>" class="btn btn-primary" > <i class="fas fa-arrow-left"></i> Back</a>
+            </div>
+            <div class="line"></div>
     </main>
   </div>
 </div>
@@ -234,4 +172,5 @@
     <script src="../assets/js/dashboard.js"></script>
   </body>
 </html>
+
 

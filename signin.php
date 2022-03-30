@@ -1,6 +1,6 @@
 <?php
 
-include("assets/dbConnect.php"); //Establishing connection with our database
+include("assets/databaseConnection.php"); //Establishing connection with our database
 session_start();
 
 if(empty($_POST["username"]) || empty($_POST["password"])) 
@@ -8,15 +8,9 @@ if(empty($_POST["username"]) || empty($_POST["password"]))
     $GLOBALS['loginError'] = 'Both fields are required.';
 }
 
-//else echo $OK
-
     $username = $_POST['username'];
     $password = MD5($_POST['password']);
-    //$sql = "SELECT * FROM users WHERE username LIKE '$email' AND password LIKE '$password' ";
-    //$sql="SELECT userid FROM users WHERE email='$email' and password='$password'";
-
-    //$result = $conn->query($sql);
-   // $result=mysqli_query($db,$sql);
+    
     $query = "SELECT user_id, full_name, username, email, 
      dob, gender FROM user WHERE email=? OR username=? AND password=? LIMIT 1";
     $stmt = $db->prepare($query);
@@ -46,7 +40,7 @@ if(empty($_POST["username"]) || empty($_POST["password"]))
         include 'error.html.php';
         exit;
     }
-
+    $stmt->close();
     $db -> close();
 
 ?>

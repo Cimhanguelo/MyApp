@@ -1,5 +1,5 @@
 <?php
-include("./assets/dbConnect.php");
+include("./assets/databaseConnection.php");
 
 $fullname 		= $_POST['fullname'];
 $username 		= $_POST['username'];
