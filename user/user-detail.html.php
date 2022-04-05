@@ -21,6 +21,11 @@
         -moz-user-select: none;
         user-select: none;
       }
+      .main-margin {
+         margin-bottom: 50px; 
+         border-bottom: 1px solid #eee; 
+         padding-bottom: 20px;
+      }
 
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
@@ -54,15 +59,15 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column" style="margin-top:45px">
           <li class="nav-item">
-            <a class="nav-link active" href=".">
+            <a class="nav-link" href=".">
               <span data-feather="home"></span>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="?symptoms">
               <span data-feather="file"></span>
-              Add Symptom
+              Symptoms
             </a>
           </li>
           <li class="nav-item">
@@ -102,7 +107,7 @@
       </div>
     </nav>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">User Profile</h1>
       </div>
@@ -167,7 +172,7 @@
     </main>
   </div>
 </div>
-<footer class="main-footer bg-gray" style="margin-left: 200px">
+<footer class="main-footer bg-gray" style="margin-left: 250px">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6"><a href="#" class="brand">PainDiary</a>

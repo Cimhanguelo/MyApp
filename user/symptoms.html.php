@@ -1,5 +1,3 @@
-
-                    
 <!doctype html>
 <html lang="en">
   <head>
@@ -23,20 +21,19 @@
         -moz-user-select: none;
         user-select: none;
       }
-      .main-margin {
-         margin-bottom: 50px; 
-         margin-top: 50px;
-         border-bottom: 1px solid #eee; 
-         padding-bottom: 20px;
-
-      }
       .footer {
         position: fixed;
         left: 0;
         bottom: 0;
         width: 100%;
-        margin-left: 200px;
+        margin-left: 250px;
       }
+      .main-margin {
+         margin-bottom: 50px; 
+         border-bottom: 1px solid #eee; 
+         padding-bottom: 20px;
+      }
+
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -69,15 +66,15 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column" style="margin-top:45px">
           <li class="nav-item">
-            <a class="nav-link active" href=".">
+            <a class="nav-link" href=".">
               <span data-feather="home"></span>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link active" href="?symptoms">
               <span data-feather="file"></span>
-              Symptom
+              Symptoms
             </a>
           </li>
           <li class="nav-item">
@@ -87,7 +84,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="?profile">
+            <a class="nav-link " aria-current="page" href="?profile">
               <span data-feather="user"></span>
               Profile
             </a>
@@ -118,15 +115,50 @@
     </nav>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin">
-            <div class="col-lg-6 text order-2 order-lg-1">
-                <h4><?php echo $_SESSION['message']; ?></h4>
-                <a href ="<?php echo $back; unset($_SESSION['message']) ?>" class="btn btn-primary" > <span data-feather="arrow-left"></span> Back</a>
-            </div>
-            <div class="line"></div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h4">List of Symptoms</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <a type="button" class="btn btn-sm btn-primary" href="?symptom-form">Add Symptom</a>
+          </div>
+          
+        </div>
+      </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                    <th scope="col">S_NO</th>
+                    <th scope="col">Symptom</th>
+                    <th scope="col">Pain Severity</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php if (!$symptoms){ echo '<span>No Record Found</span>'; } else{ $s_no = 1; foreach ($symptoms as $symptom):  ?>
+                    <form method="POST" >
+                        <tr>
+                        <td><?php echo $s_no ?></td>
+                        <td><?php echo $symptom['name'] ?></td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: <?php echo ($symptom['pain_level']/10)*100?>%;  background-color: <?php if ($symptom['pain_level'] > 7) echo 'red' ?>;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"><?php echo $symptom['pain_level'] ?></div>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="hidden" name = "symptom_id" value="<?php echo $symptom['id'] ?>" />
+                            <input type="submit" name="get-detail" class="btn btn-outline-primary" value="Detail" />
+                        </td>
+                        </tr>
+                    </form>
+                    <?php $s_no++; endforeach; } ?>
+                </tbody>
+                </table>
+        </div>
     </main>
   </div>
 </div>
-<footer class="main-footer bg-gray footer">
+<footer class="main-footer bg-gray" style="margin-left: 250px">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6"><a href="#" class="brand">PainDiary</a>
@@ -182,5 +214,4 @@
     <script src="../assets/js/dashboard.js"></script>
   </body>
 </html>
-
 

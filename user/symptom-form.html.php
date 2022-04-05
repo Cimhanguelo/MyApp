@@ -1,5 +1,3 @@
-
-                    
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,17 +23,15 @@
       }
       .main-margin {
          margin-bottom: 50px; 
-         margin-top: 50px;
          border-bottom: 1px solid #eee; 
          padding-bottom: 20px;
-
       }
       .footer {
         position: fixed;
         left: 0;
         bottom: 0;
         width: 100%;
-        margin-left: 200px;
+        margin-left: 250px;
       }
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
@@ -69,15 +65,15 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column" style="margin-top:45px">
           <li class="nav-item">
-            <a class="nav-link active" href=".">
+            <a class="nav-link" href=".">
               <span data-feather="home"></span>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link active" href="?symptoms">
               <span data-feather="file"></span>
-              Symptom
+              Symptoms
             </a>
           </li>
           <li class="nav-item">
@@ -87,7 +83,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="?profile">
+            <a class="nav-link " aria-current="page" href="?profile">
               <span data-feather="user"></span>
               Profile
             </a>
@@ -117,16 +113,103 @@
       </div>
     </nav>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin" >
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h4">Add New Symptom</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <a type="button" class="btn btn-sm btn-primary" href="?symptoms"><span data-feather="arrow-left"></span>Back</a>
+          </div>
+          
+        </div>
+      </div>
             <div class="col-lg-6 text order-2 order-lg-1">
-                <h4><?php echo $_SESSION['message']; ?></h4>
-                <a href ="<?php echo $back; unset($_SESSION['message']) ?>" class="btn btn-primary" > <span data-feather="arrow-left"></span> Back</a>
-            </div>
-            <div class="line"></div>
+            <form method="POST">
+              <fieldset >
+                  <?php if(isset($_SESSION['message'])) {  ?>
+                      <div class="alert alert-warning">
+                          <h5><?php echo $_SESSION['message'] ?></h5>
+                      </div>
+                  <?php } ?>
+                  <div class="row">
+                      <div class="col-sm-3">
+                          <h6 class="mb-0">Select Symptom</h6>
+                      </div>
+                      <div class="col-sm-9 text-secondary">
+                      <select id="inputSelect"  name="symptom" class="form-select" required>
+                        <?php if (!$symptoms){ echo '<span>No Record Found</span>'; } else{ foreach ($symptoms as $symptom): ?>
+                          <option value = "<?php echo $symptom['id']?>"> <?php echo $symptom['name']?> <option>
+                        <?php endforeach; } ?>
+                      </select>
+                      </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Select Pain Severity</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                        <select id="inputSelect"  name="pain-level" class="form-select" required>
+                    <?php  for ($level = 1; $level<=10; $level++): ?>
+                      <option value = "<?php echo $level?>"> <?php echo $level?> <option>
+                    <?php endfor; ?>
+                  </select>
+                        </div>
+                    </div>
+                  <hr>
+                <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Pain Location</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                        <input type="text" id="textInput" class="form-control" name="location" placeholder="Location" required>
+                        </div>
+                    </div>
+                    <hr>
+                <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Additional Note</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                        <input type="text" id="textInput" class="form-control" name="note" placeholder="Note">
+                        </div>
+                    </div>
+                    <hr>
+                <div class="row">
+                    <div class="col-sm-3">
+                          <h6 class="mb-0">Daily Refelection</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <input type="text" id="textInput" class="form-control" name="reflection" placeholder="Reflection">
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                      <h6 class="mb-0">Other Symptoms</h6>
+                    </div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="text" id="textInput" class="form-control" name="other-symptom" placeholder="Enter symptoms seprated by comma"> 
+                  </div>
+                </div>
+                <hr>
+                <div class="row">
+                  <div class="col-sm-3">
+                      <h6 class="mb-0">Aggravating Factors</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                      <input type="text" id="textInput" class="form-control" name="agg-factor" placeholder="Agg. Factors">
+                  </div>
+                </div>
+                <hr>
+                <input type="submit" name="submit-pain" class="btn btn-primary" value="Submit" />
+              </fieldset>
+            </form>
+        </div>
     </main>
   </div>
 </div>
-<footer class="main-footer bg-gray footer">
+<footer class="main-footer bg-gray" style="margin-left: 250px">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6"><a href="#" class="brand">PainDiary</a>
@@ -182,5 +265,4 @@
     <script src="../assets/js/dashboard.js"></script>
   </body>
 </html>
-
 

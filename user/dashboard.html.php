@@ -22,6 +22,12 @@
         user-select: none;
       }
 
+      .main-margin {
+         margin-bottom: 50px; 
+         border-bottom: 1px solid #eee; 
+         padding-bottom: 20px;
+      }
+      
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -60,9 +66,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="?symptoms">
               <span data-feather="file"></span>
-              Add Symptom
+              Symptoms
             </a>
           </li>
           <li class="nav-item">
@@ -102,7 +108,7 @@
       </div>
     </nav>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
@@ -118,66 +124,43 @@
       </div>
 
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-      <h2>Symptom Details</h2>
+      <h1 class="h4">Symptom Summary</h1>
+      <hr>
       <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">S_NO</th>
-              <th scope="col">Symptom</th>
-              <th scope="col">Paing Severity</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Head Ache</td>
-              <td>4</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Back Pain</td>
-              <td>5</td>
-            </tr>
-            
-          </tbody>
-        </table>
-      </div>
+                <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                    <th scope="col">S_NO</th>
+                    <th scope="col">Symptom</th>
+                    <th scope="col">Pain Severity</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php if (!$symptoms){ echo '<span>No Record Found</span>'; } else{ $s_no = 1; foreach ($symptoms as $symptom):  ?>
+                    <form method="POST" >
+                        <tr>
+                        <td><?php echo $s_no ?></td>
+                        <td><?php echo $symptom['name'] ?></td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: <?php echo ($symptom['pain_level']/10)*100?>%;  background-color: <?php if ($symptom['pain_level'] > 7) echo 'red' ?>;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"><?php echo $symptom['pain_level'] ?></div>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="hidden" name = "symptom_id" value="<?php echo $symptom['id'] ?>" />
+                            <input type="submit" name="get-detail" class="btn btn-outline-primary" value="Detail" />
+                        </td>
+                        </tr>
+                    </form>
+                    <?php $s_no++; endforeach; } ?>
+                </tbody>
+                </table>
+        </div>
     </main>
   </div>
 </div>
-<footer class="main-footer bg-gray" style="margin-left: 200px">
+<footer class="main-footer bg-gray" style="margin-left: 250px">
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6"><a href="#" class="brand">PainDiary</a>
