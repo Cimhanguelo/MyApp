@@ -38,6 +38,25 @@
     
     <!-- Custom styles for this template -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
+    <script language="JavaScript1.2"> 
+        function printReport() {
+        const reportPage = document.getElementById('report-content');
+        html2canvas(reportPage).then((canvas) => {
+          const data = canvas.toDataURL();
+          const docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+          
+            //a.click(); // MAY NOT ALWAYS WORK!
+            pdfMake.createPdf(docDefinition).download("Report.pdf");
+        });
+      }
+    </script>
   </head>
   <body>
     
@@ -108,13 +127,15 @@
       </div>
     </nav>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin" id="report-content">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        
         <h1 class="h2">Dashboard</h1>
+        </script>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick='printReport();'>Export</button>
           </div>
           <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
             <span data-feather="calendar"></span>
