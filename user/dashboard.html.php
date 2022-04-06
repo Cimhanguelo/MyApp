@@ -143,8 +143,8 @@
                         <td><?php echo $s_no ?></td>
                         <td><?php echo $symptom['name'] ?></td>
                         <td>
-                            <div class="progress">
-                                <div class="progress-bar" role="progressbar" style="width: <?php echo ($symptom['pain_level']/10)*100?>%;  background-color: <?php if ($symptom['pain_level'] > 7) echo 'red' ?>;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"><?php echo $symptom['pain_level'] ?></div>
+                            <div class="progress" style="margin-top: 10px; height: 20px">
+                                <div class="progress-bar" role="progressbar" style="width: <?php echo ($symptom['pain_level']/10)*100?>%;  background-color: <?php if ($symptom['pain_level'] < 7) { echo '#FFBF00';  } else { echo 'red'; } ?>;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"><?php echo $symptom['pain_level'] ?></div>
                             </div>
                         </td>
                         <td>
