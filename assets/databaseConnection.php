@@ -7,7 +7,7 @@
  */
 
 $servername = "localhost";
-$dbname='pain_diairy';
+$dbname='paindiary';
 $username = "root";
 $password = "";
 
