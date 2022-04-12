@@ -53,7 +53,6 @@
   </button>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#"><?php echo "Welcome " . $_SESSION['fullname'] ?></a>
       <a class="nav-link px-3" href="?logout">Sign out</a>
     </div>
   </div>
@@ -117,6 +116,7 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h4">Symptom Detail</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
+        <a class="nav-link px-3" href="#"><?php echo "Welcome " . $_SESSION['fullname'] ?></a>
           <div class="btn-group me-2">
             <a type="button" class="btn btn-sm btn-primary" href="?symptoms"><span data-feather="arrow-left"></span>Back</a>
           </div>

@@ -53,7 +53,35 @@ if(isset($_GET['profile'])){
 	exit();
 }
 
+// update symptoms
+if (isset($_POST['submit-update']) && $_POST['submit-update'] == "Update") {
+	// echo 'Update';
+	// connect database
+	include("../assets/databaseConnection.php");
 
+	$note = $_POST['note'];
+	$location = $_POST['location'];
+	$reflection = $_POST['reflection'];
+	$other_symptom = $_POST['other-symptom'];
+	$agg_factor = $_POST['agg-factor'];
+	$symptom_id = $_POST['symptom_id'];
+	
+	$sql = "UPDATE user_symptom SET daily_reflection=?, note=?, location=?, other_symptoms=?, agg_factors=? WHERE id = ?";
+	$stmt = $db->prepare($sql);
+	$stmt->bind_param('sssssi', $reflection, $note, $location, $other_symptom, $agg_factor, $symptom_id);
+
+	if ($stmt->execute()){
+		$_SESSION['message'] = "Symptom Update successful";
+		$back = '?symptoms';
+		include 'message.html.php';
+		exit;
+	} else {
+		$_SESSION['message'] = "Error: " .$db->error;
+		exit;
+	}
+}
+
+//get symptoms detail
 if (isset($_POST['get-detail']) && $_POST['get-detail'] == "Detail") {
 	// connect database
 	include("../assets/databaseConnection.php");

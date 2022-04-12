@@ -67,7 +67,6 @@
   </button>
   <div class="navbar-nav">
     <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#"><?php echo "Welcome " . $_SESSION['fullname'] ?></a>
       <a class="nav-link px-3" href="?logout">Sign out</a>
     </div>
   </div>
@@ -134,6 +133,7 @@
         </script>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
+          <a class="nav-link px-3" href="#"><?php echo "Welcome " . $_SESSION['fullname'] ?></a>
             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
             <button type="button" class="btn btn-sm btn-outline-secondary" onclick='printReport();'>Export</button>
           </div>
