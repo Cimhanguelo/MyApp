@@ -53,6 +53,108 @@ if(isset($_GET['profile'])){
 	exit();
 }
 
+if(isset($_GET['current-month'])) {
+	// connect database
+	include("../assets/databaseConnection.php");
+	$user_id = $_SESSION['userid'];
+
+try{
+	// DATEADD(WEEK, -1, GETUTCDATE())
+	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 30 DAY)";
+	$result = $db->query($query);
+	if($result){
+		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
+		$chart_query = "SELECT name, sum(pain_level) as level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 30 DAY) GROUP BY name";
+		$chart_result = $db->query($chart_query);
+		if($chart_result) {
+			$charts = $chart_result->fetch_all(MYSQLI_ASSOC);
+			$dashboard = "Current Month";
+			//print_r($charts);
+			include 'dashboard.html.php';
+			exit();
+		}else {
+			echo $db->error;
+		}
+	}else{
+	  $_SESSION['message'] = 'Error occured '. $db->error;
+	  $back = '.';
+	  include 'message.html.php';
+	}
+  }catch(Exception $ex){
+	$_SESSION['message'] = 'Error occured '. $ex;
+	include 'message.html.php';
+  }   
+	exit;
+}
+
+if(isset($_GET['last-quarter'])) {
+	// connect database
+	include("../assets/databaseConnection.php");
+	$user_id = $_SESSION['userid'];
+
+try{
+	// DATEADD(WEEK, -1, GETUTCDATE())
+	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 90 DAY)";
+	$result = $db->query($query);
+	if($result){
+		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
+		$chart_query = "SELECT name, sum(pain_level) as level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 90 DAY) GROUP BY name";
+		$chart_result = $db->query($chart_query);
+		if($chart_result) {
+			$charts = $chart_result->fetch_all(MYSQLI_ASSOC);
+			$dashboard = "Last Quarter";
+			//print_r($charts);
+			include 'dashboard.html.php';
+			exit();
+		}else {
+			echo $db->error;
+		}
+	}else{
+	  $_SESSION['message'] = 'Error occured '. $db->error;
+	  $back = '.';
+	  include 'message.html.php';
+	}
+  }catch(Exception $ex){
+	$_SESSION['message'] = 'Error occured '. $ex;
+	include 'message.html.php';
+  }   
+	exit;
+}
+
+if(isset($_GET['this-week'])) {
+	// connect database
+	include("../assets/databaseConnection.php");
+	$user_id = $_SESSION['userid'];
+
+try{
+	// DATEADD(WEEK, -1, GETUTCDATE())
+	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 7 DAY)";
+	$result = $db->query($query);
+	if($result){
+		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
+		$chart_query = "SELECT name, sum(pain_level) as level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 7 DAY) GROUP BY name";
+		$chart_result = $db->query($chart_query);
+		if($chart_result) {
+			$charts = $chart_result->fetch_all(MYSQLI_ASSOC);
+			$dashboard = "This Week";
+			//print_r($charts);
+			include 'dashboard.html.php';
+			exit();
+		}else {
+			echo $db->error;
+		}
+	}else{
+	  $_SESSION['message'] = 'Error occured '. $db->error;
+	  $back = '.';
+	  include 'message.html.php';
+	}
+  }catch(Exception $ex){
+	$_SESSION['message'] = 'Error occured '. $ex;
+	include 'message.html.php';
+  }   
+	exit;
+}
+
 // update symptoms
 if (isset($_POST['submit-update']) && $_POST['submit-update'] == "Update") {
 	// echo 'Update';
@@ -95,6 +197,7 @@ if (isset($_POST['get-detail']) && $_POST['get-detail'] == "Detail") {
 			exit();
 		}else{
 		  $_SESSION['message'] = 'Error occured '. $db->error;
+		  $back = '?symptoms';
 		  include 'message.html.php';
 		}
 	  }catch(Exception $ex){
@@ -118,6 +221,7 @@ if (isset($_GET['symptoms'])) {
 			exit();
 		}else{
 		  $_SESSION['message'] = 'Error occured '. $db->error;
+		  $back = '.';
 		  include 'message.html.php';
 		}
 	  }catch(Exception $ex){
@@ -180,12 +284,22 @@ include("../assets/databaseConnection.php");
 $user_id = $_SESSION['userid'];
 
 try{
-	$query = "SELECT user_symptom.id as id, name, pain_level FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id";
+	// DATEADD(WEEK, -1, GETUTCDATE())
+	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
-		include 'dashboard.html.php';
-		exit();
+		$chart_query = "SELECT name, sum(pain_level) as level FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id GROUP BY name";
+		$chart_result = $db->query($chart_query);
+		if($chart_result) {
+			$charts = $chart_result->fetch_all(MYSQLI_ASSOC);
+			$dashboard = "Over All";
+			//print_r($charts);
+			include 'dashboard.html.php';
+			exit();
+		}else {
+			echo $db->error;
+		}
 	}else{
 	  $_SESSION['message'] = 'Error occured '. $db->error;
 	  include 'message.html.php';

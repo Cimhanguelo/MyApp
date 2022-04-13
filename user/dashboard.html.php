@@ -78,7 +78,7 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column" style="margin-top:35px">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">
+            <a class="nav-link active" aria-current="page" href=".">
               <span data-feather="home"></span>
               Dashboard
             </a>
@@ -111,13 +111,13 @@
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="?current-month">
               <span data-feather="file-text"></span>
               Current month
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="?last-quarter">
               <span data-feather="file-text"></span>
               Last quarter
             </a>
@@ -129,7 +129,7 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin" id="report-content">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="h2">Dashboard: <?php echo $dashboard ?></h1>
         </script>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
@@ -137,15 +137,15 @@
             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
             <button type="button" class="btn btn-sm btn-outline-secondary" onclick='printReport();'>Export</button>
           </div>
-          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar"></span>
-            This week
-          </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+              <span data-feather="calendar"></span>
+              <a href="?this-week" style="text-decoration:none"> This week </a>
+            </button>
         </div>
       </div>
 
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-      <h1 class="h4">Symptom Summary</h1>
+      <h1 class="h4">Symptom Details</h1>
       <hr>
       <div class="table-responsive">
                 <table class="table table-hover table-sm">
@@ -153,8 +153,8 @@
                     <tr>
                     <th scope="col">S_NO</th>
                     <th scope="col">Symptom</th>
+                    <th scope="col">DateTime</th>
                     <th scope="col">Pain Severity</th>
-                    <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -163,14 +163,11 @@
                         <tr>
                         <td><?php echo $s_no ?></td>
                         <td><?php echo $symptom['name'] ?></td>
+                        <td><?php echo $symptom['date'] ?></td>
                         <td>
                             <div class="progress" style="margin-top: 10px; height: 20px">
                                 <div class="progress-bar" role="progressbar" style="width: <?php echo ($symptom['pain_level']/10)*100?>%;  background-color: <?php if ($symptom['pain_level'] < 7) { echo '#FFBF00';  } else { echo 'red'; } ?>;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"><?php echo $symptom['pain_level'] ?></div>
                             </div>
-                        </td>
-                        <td>
-                            <input type="hidden" name = "symptom_id" value="<?php echo $symptom['id'] ?>" />
-                            <input type="submit" name="get-detail" class="btn btn-outline-primary" value="Detail" />
                         </td>
                         </tr>
                     </form>
@@ -229,11 +226,58 @@
         </div>
       </div>
     </footer>
-
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    <script src="../assets/js/dashboard.js"></script>
+    <script>
+          // Access the array elements
+          var chartArray = <?php echo json_encode($charts); ?>;
+          var label_values = [];
+          var data_values = [];
+            // Display the array elements
+            //console.log(chartArray);
+            for (let i=0; i<chartArray.length; i++) {
+              label_values.push(chartArray[i]['name']);
+              data_values.push(chartArray[i]['level']);
+              console.log(chartArray[i]['name'] + " " + chartArray[i]['level']);
+            // document.write(charArray[i].name + " " chartArray[i].level)
+            }
+            /* globals Chart:false, feather:false */
+
+          (function () {
+            'use strict'
+            feather.replace({ 'aria-hidden': 'true' })
+            // Graphs
+            var ctx = document.getElementById('myChart')
+            // eslint-disable-next-line no-unused-vars
+            var myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: label_values,
+                datasets: [{
+                  data: data_values,
+                  label: 'Pain Diary Chart',
+                  lineTension: 0,
+                  backgroundColor: 'transparent',
+                  borderColor: '#007bff',
+                  borderWidth: 4,
+                  pointBackgroundColor: '#007bff'
+                }]
+              },
+              options: {
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    }
+                  }]
+                },
+                legend: {
+                  display: true
+                }
+              }
+            })
+          })()
+  </script>
   </body>
 </html>
