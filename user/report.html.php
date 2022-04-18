@@ -21,19 +21,13 @@
         -moz-user-select: none;
         user-select: none;
       }
-      .footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        margin-left: 250px;
-      }
+
       .main-margin {
          margin-bottom: 50px; 
          border-bottom: 1px solid #eee; 
          padding-bottom: 20px;
       }
-
+      
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -44,6 +38,25 @@
     
     <!-- Custom styles for this template -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
+    <script language="JavaScript1.2"> 
+        function printReport() {
+        const reportPage = document.getElementById('report-content');
+        html2canvas(reportPage).then((canvas) => {
+          const data = canvas.toDataURL();
+          const docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+          
+            //a.click(); // MAY NOT ALWAYS WORK!
+            pdfMake.createPdf(docDefinition).download("Report.pdf");
+        });
+      }
+    </script>
   </head>
   <body>
     
@@ -63,15 +76,15 @@
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
-        <ul class="nav flex-column" style="margin-top:45px">
+        <ul class="nav flex-column" style="margin-top:35px">
           <li class="nav-item">
-            <a class="nav-link" href=".">
+            <a class="nav-link" aria-current="page" href=".">
               <span data-feather="home"></span>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="?symptoms">
+            <a class="nav-link" href="?symptoms">
               <span data-feather="file"></span>
               Symptoms
             </a>
@@ -83,13 +96,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="?report">
+            <a class="nav-link active" href="?report">
               <span data-feather="bar-chart-2"></span>
               Reports
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="?profile">
+            <a class="nav-link" href="?profile">
               <span data-feather="user"></span>
               Profile
             </a>
@@ -98,9 +111,12 @@
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Saved reports</span>
+          <a class="link-secondary" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
         </h6>
         <ul class="nav flex-column mb-2">
-          <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="?this-week">
                 <span data-feather="file-text"></span>
                 This Week
@@ -122,27 +138,55 @@
       </div>
     </nav>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h4">List of Symptoms</h1>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin" id="report-content">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        
+        <h1 class="h2">Report: <?php echo $dashboard ?></h1>
+        </script>
         <div class="btn-toolbar mb-2 mb-md-0">
-        <a class="nav-link px-3" href="#"><?php echo "Welcome " . $_SESSION['fullname'] ?></a>
           <div class="btn-group me-2">
-            <a type="button" class="btn btn-sm btn-primary" href="?symptom-form">Add Symptom</a>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick='printReport();'>Export</button>
           </div>
-          
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+              <span data-feather="calendar"></span>
+              <a href="?this-week" style="text-decoration:none"> This week </a>
+            </button>
         </div>
       </div>
-            <div class="table-responsive">
+        <div class="container-fluid" style="border-bottom: 1px solid #ddd">
+            <h4>Biodata:</h4>
+            <div class="row">
+                <div class="col">
+                    <h5>Name: <?php echo $_SESSION['fullname']?> </h5>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                    <h5>Email: <?php echo $_SESSION['email']?> </h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Gender: <?php echo $_SESSION['gender']?> </h5>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                <h5>Date of Birth: <?php echo $_SESSION['dob']?> </h5>
+                </div>
+            </div>
+        </div>
+      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+      <h1 class="h4">Symptom Details</h1>
+      <hr>
+      <div class="table-responsive">
                 <table class="table table-hover table-sm">
                 <thead>
                     <tr>
                     <th scope="col">S_NO</th>
                     <th scope="col">Symptom</th>
-                    <th scope="col">Date</th>
+                    <th scope="col">DateTime</th>
                     <th scope="col">Pain Severity</th>
                     <th scope="col">Pain Duration</th>
-                    <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,15 +197,11 @@
                         <td><?php echo $symptom['name'] ?></td>
                         <td><?php echo $symptom['date'] ?></td>
                         <td>
-                              <div class="progress" style="margin-top: 10px; height: 20px">
+                            <div class="progress" style="margin-top: 5px; height: 20px">
                                 <div class="progress-bar" role="progressbar" style="width: <?php echo ($symptom['pain_level']/10)*100?>%;  background-color: <?php if ($symptom['pain_level'] < 7) { echo '#FFBF00';  } else { echo 'red'; } ?>;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"><?php echo $symptom['pain_level'] ?></div>
                             </div>
                         </td>
                         <td><?php echo $symptom['pain_duration'] ?></td>
-                        <td>
-                            <input type="hidden" name = "symptom_id" value="<?php echo $symptom['id'] ?>" />
-                            <input type="submit" name="get-detail" class="btn btn-outline-primary" value="Detail" />
-                        </td>
                         </tr>
                     </form>
                     <?php $s_no++; endforeach; } ?>
@@ -176,8 +216,8 @@
         <div class="row">
           <div class="col-lg-3 col-md-6"><a href="#" class="brand">PainDiary</a>
             <ul class="contact-info list-unstyled">
-              <li><a href="mailto:sales@bella.com">support@paindiary.com</a></li>
-              <li><a href="tel:07776795096">+445678909888</a></li>
+              <li><a href="mailto:support@paindiary.com">support@paindiary.com</a></li>
+              <li><a href="tel:05678909888">+445678909888</a></li>
             </ul>
             <ul class="social-icons list-inline">
               <li class="list-inline-item"><a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
@@ -219,12 +259,58 @@
         </div>
       </div>
     </footer>
-
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-    <script src="../assets/js/dashboard.js"></script>
+    <script>
+          // Access the array elements
+          var chartArray = <?php echo json_encode($charts); ?>;
+          var label_values = [];
+          var data_values = [];
+            // Display the array elements
+            //console.log(chartArray);
+            for (let i=0; i<chartArray.length; i++) {
+              label_values.push(chartArray[i]['name']);
+              data_values.push(chartArray[i]['level']);
+              console.log(chartArray[i]['name'] + " " + chartArray[i]['level']);
+            // document.write(charArray[i].name + " " chartArray[i].level)
+            }
+            /* globals Chart:false, feather:false */
+
+          (function () {
+            'use strict'
+            feather.replace({ 'aria-hidden': 'true' })
+            // Graphs
+            var ctx = document.getElementById('myChart')
+            // eslint-disable-next-line no-unused-vars
+            var myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: label_values,
+                datasets: [{
+                  data: data_values,
+                  label: 'Average pain severity',
+                  lineTension: 0,
+                  backgroundColor: 'transparent',
+                  borderColor: '#007bff',
+                  borderWidth: 4,
+                  pointBackgroundColor: '#007bff'
+                }]
+              },
+              options: {
+                scales: {
+                  yAxes: [{
+                    ticks: {
+                      beginAtZero: false
+                    }
+                  }]
+                },
+                legend: {
+                  display: true
+                }
+              }
+            })
+          })()
+  </script>
   </body>
 </html>
-

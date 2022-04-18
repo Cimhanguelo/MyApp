@@ -38,25 +38,6 @@
     
     <!-- Custom styles for this template -->
     <link href="../assets/css/dashboard.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/pdfmake.min.js"></script>
-    <script language="JavaScript1.2"> 
-        function printReport() {
-        const reportPage = document.getElementById('report-content');
-        html2canvas(reportPage).then((canvas) => {
-          const data = canvas.toDataURL();
-          const docDefinition = {
-                    content: [{
-                        image: data,
-                        width: 500
-                    }]
-                };
-          
-            //a.click(); // MAY NOT ALWAYS WORK!
-            pdfMake.createPdf(docDefinition).download("Report.pdf");
-        });
-      }
-    </script>
   </head>
   <body>
     
@@ -90,7 +71,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="?symptom-form" aria-label="Add a new report">
+              <span data-feather="plus-circle"></span>
+              Add Symptom
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="?report">
               <span data-feather="bar-chart-2"></span>
               Reports
             </a>
@@ -105,11 +92,14 @@
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Saved reports</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <span data-feather="plus-circle"></span>
-          </a>
         </h6>
         <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+              <a class="nav-link" href="?this-week">
+                <span data-feather="file-text"></span>
+                This Week
+              </a>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href="?current-month">
               <span data-feather="file-text"></span>
@@ -129,18 +119,12 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin" id="report-content">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         
-        <h1 class="h2">Dashboard: <?php echo $dashboard ?></h1>
+        <h1 class="h2">Dashboard</h1>
         </script>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
           <a class="nav-link px-3" href="#"><?php echo "Welcome " . $_SESSION['fullname'] ?></a>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" onclick='printReport();'>Export</button>
           </div>
-            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-              <span data-feather="calendar"></span>
-              <a href="?this-week" style="text-decoration:none"> This week </a>
-            </button>
         </div>
       </div>
 
@@ -155,6 +139,7 @@
                     <th scope="col">Symptom</th>
                     <th scope="col">DateTime</th>
                     <th scope="col">Pain Severity</th>
+                    <th scope="col">Pain Duration</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -169,6 +154,7 @@
                                 <div class="progress-bar" role="progressbar" style="width: <?php echo ($symptom['pain_level']/10)*100?>%;  background-color: <?php if ($symptom['pain_level'] < 7) { echo '#FFBF00';  } else { echo 'red'; } ?>;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"><?php echo $symptom['pain_level'] ?></div>
                             </div>
                         </td>
+                        <td><?php echo $symptom['pain_duration'] ?></td>
                         </tr>
                     </form>
                     <?php $s_no++; endforeach; } ?>
@@ -183,8 +169,8 @@
         <div class="row">
           <div class="col-lg-3 col-md-6"><a href="#" class="brand">PainDiary</a>
             <ul class="contact-info list-unstyled">
-              <li><a href="mailto:sales@bella.com">support@paindiary.com</a></li>
-              <li><a href="tel:07776795096">+445678909888</a></li>
+              <li><a href="mailto:support@paindiary.com">support@paindiary.com</a></li>
+              <li><a href="tel:05678909888">+445678909888</a></li>
             </ul>
             <ul class="social-icons list-inline">
               <li class="list-inline-item"><a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>

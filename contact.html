@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PainDiary</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Custom Font Icons CSS-->
+    <link rel="stylesheet" href="assets/css/landy-iconfont.css">
+    <!-- Google fonts - Open Sans-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
+    <!-- stylesheet-->
+    <link rel="stylesheet" href="assets/css/style.css" id="theme-stylesheet">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="favicon.png">
+
+  </head>
+  <body>
+    <!-- navbar-->
+    <header class="header">
+      <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top"><a class="logo" href="index.html">
+        <img src="assets/images/pain_diary_logo.png" alt="paindiary" height="60">
+      </a>
+        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
+          <ul class="navbar-nav ml-auto align-items-start align-items-lg-center" style="margin-left: 25%;">
+            <li class="nav-item"><a href="index.html" class="nav-link link-scroll">Home</a></li>
+            <li class="nav-item"><a href="help.html" class="nav-link link-scroll">Help</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link link-scroll">About</a></li>
+            <li class="nav-item"><a href="term.html" class="nav-link link-scroll">Terms</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link active">Contact</a></li>
+          </ul>
+          <div class="navbar-text" style="margin-left: 15%;">
+            <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-primary" style="margin-left: 20px; border-radius: 2px;">Login</a>
+          </div>
+          <div class="navbar-text">   
+            <!-- Button trigger modal--><a href="#" data-toggle="modal" data-target="#registerModal" class="btn btn-primary navbar-btn btn-shadow" style="border-radius: 2px;">Register</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Sign up Modal-->
+    <div id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="registerModalLabel" class="modal-title">Sign Up</h5>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <form id="signupform" method="post" action="register.php">
+              <div class="form-group">
+                <label for="fullname">Full Name</label>
+                <input type="text" name="fullname" placeholder="Full Name" id="fullname" required>
+              </div>
+              <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" name="username" placeholder="User Name" id="username" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="text" name="email" placeholder="Email Address" id="email" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Password</label>
+                <input type="password" name="password" placeholder="Password" id="password" required>
+              </div>
+               <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-center mb-4" >
+                  <input 
+                     class="form-check-input me-2"
+                     type="checkbox"
+                     value=""
+                     id="form2Example3"
+                     unchecked
+                     required
+                  />
+                  <label class="form-check-label" for="form2Example3">
+                    <br> I Agree to the Terms and Conditions
+                  </label>
+                </div>
+              <div class="form-group">
+                <button type="submit" class="submit btn btn-primary btn-shadow" style="border-radius: 2px;">Signup</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <!-- Sign In Modal-->
+     <div id="loginModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="registerModalLabel" class="modal-title">Sign In</h5>
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body">
+            <form id="signupform" method="post" action="signin.php">
+              <div class="form-group">
+                <label for="username">User Name</label>
+                <input type="text" name="username" placeholder="User Name" id="username">
+              </div>
+              <div class="form-group">
+                <label for="email">Password</label>
+                <input type="password" name="password" placeholder="Password" id="password">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="submit btn btn-primary btn-shadow " style="border-radius: 2px;">Login</button>
+              </div>
+              <div class="form-group">
+                <a href="password-reset/">reset password</a>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="browser" class="browser">
+        <div class="container">
+          <div class="row d-flex justify-content-center"> 
+            <div class="col-lg-8 text-center">
+              <h2 class="h3 mb-5">Contact Us</h2>
+              <div class="browser-mockup">
+              </div>
+              <p>We welcome your suggestions and input.</p>
+              <p>You can contact us at paindiary5@gmail.com </p>
+    
+            
+            </div>
+          </div>
+          <div id="myTab" role="tablist" class="nav nav-tabs">
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section id="extra-features" class="extra-features bg-primary">
+        <div class="container text-center">
+          <header>
+            <h2>Some Pain Medications</h2>
+            <div class="row">
+              <p class="lead col-lg-8 mx-auto">There are many different types of pain-relieving medications and each class works in a slightly different way. Most medications can be grouped under one of the following.</p>
+            </div>
+          </header>
+          <div class="grid row">
+            <div class="item col-lg-4 col-md-6">
+              <div class="icon"> <i class="icon-yelp"></i></div>
+              <h3 class="h5">Nonopioids</h3>
+              <p>Nonopioids: a medicine that is not similar to morphine (an opioid) but is not addictive (eg, acetaminophen, aspirin, NSAIDs).</p>
+            </div>
+            <div class="item col-lg-4 col-md-6">
+              <div class="icon"> <i class="fa-bug"></i></div>
+              <h3 class="h5">Weak opioids</h3>
+              <p>Weak opioids: a medicine that is similar to morphine (an opioid) but not considered as strong (eg, codeine, tramadol).</p>
+            </div>
+            <div class="item col-lg-4 col-md-6">
+              <div class="icon"> <i class="fa-eercast"></i></div>
+              <h3 class="h5">Combination opioids</h3>
+              <p>Combination opioids: these contain a nonopioid and either a weak opioid or a strong opioid (eg, acetaminophen and hydrocodone).</p>
+            </div>
+            <div class="item col-lg-4 col-md-6">
+              <div class="icon"> <i class="icon-adjust"></i></div>
+              <h3 class="h5">Strong opioids</h3>
+              <p>Strong opioids: a medicine such as morphine or similar to morphine that has the potential to cause addiction (eg, fentanyl, morphine, oxycodone).</p>
+            </div>
+            <div class="item col-lg-4 col-md-6">
+              <div class="icon"> <i class="fa-ravelry"></i></div>
+              <h3 class="h5">Adjuvant treatments</h3>
+              <p>Adjuvant treatments: a medicine that can help relieve pain by relieving inflammation or by improving the functioning of other systems (eg, cannabidiol, capsaicin cream, gabapentin).</p>
+            </div>
+            <div class="item col-lg-4 col-md-6">
+              <div class="icon"> <i class="icon-quality"></i></div>
+              <h3 class="h5">Nonpharmacological treatments</h3>
+              <p>Nonpharmacological treatments (drug-free treatments), such as psychotherapy or counseling.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <section id="testimonials" class="testimonials">
+        <div class="container">
+          <header class="text-center no-margin-bottom">   
+            <h2>Some Pain Specialist In United Kingdom</h2>
+            <p class="lead">There are many variations of passages of Lorem Ipsum available, but the majority have</p>
+          </header>
+          <div class="owl-carousel owl-theme testimonials-slider"> 
+            <div class="item-holder">
+              <div class="item">
+                  <div class="avatar"><img src="assets/images/Dhiya.jpeg" alt="" class="img-fluid"></div>
+                <div class="text">
+                  <div class="quote"><img src="assets/images/comment.jpeg" alt="..." class="img-fluid"></div>
+                  <p>Dr Houssien comes with over 20 years of experience in the treatment of pain.
+                       He manages his patients in his centre based on the prestigious Harley
+                       Street in London and uses a combination of alternative and traditional medicine.  
+                      </p><strong class="name">Dhiya Houssien</strong>
+                      <ul class="contact-info list-unstyled">
+                          <li><a href="mailto:dia@drdia.com">dia@drdia.com</a></li>
+                          <li><a href="tel:07946635688">+44 7946635688</a></li>
+                        </ul>
+                </div>
+              </div>
+            </div>
+            <div class="item-holder">
+              <div class="item">
+                <div class="avatar"><img src="assets/images/fegan.jpeg" alt="..." class="img-fluid"></div>
+                <div class="text">
+                  <div class="quote"><img src="assets/images/comment.jpeg" alt="..." class="img-fluid"></div>
+                  <p>Mr Dan Fagan is Consultant Spinal Surgeon at SpineArt in Yarm, a specialist clinical network 
+                     covering the Northeast and North Yorkshire. He provides the best quality care for patients with 
+                     problems affecting the neck and back such as sciatica, slipped disc, and spinal stenosis.
+                  </p><strong class="name">Daniel Fagan</strong>
+                      <ul class="contact-info list-unstyled">
+                          <li><a href="mailto:www.spineart.org">www.spineart.org</a></li>
+                          <li><a href="tel:07539 330360">+44 7539 330360</a></li>
+                        </ul>
+                </div>
+              </div>
+            </div>
+            <div class="item-holder">
+              <div class="item">
+                  <div class="quote"><img src="assets/images/comment.jpeg" alt="..." class="img-fluid"></div>
+                <div class="text">
+                  <div class="avatar"><img src="assets/images/joshua.jpeg" alt="..." class="img-fluid"></div>
+                  <p>Dr Joshua Adedokun is a Consultant in Pain Medicine practising in Manchester, 
+                      Bolton and Blackburn. He has extensive experience in a wide range of chronic 
+                      pain conditions such as neck pain, lower back pain, and brachialgia and sciatic pain.
+                  </p><strong class="name">Joshua Adedokun</strong>
+                  <ul class="contact-info list-unstyled">
+                      <li><a href="mailto:expertpainreports@gmail.com">expertpainreports@gmail.com</a></li>
+                      <li><a href="tel:0161 449 7442">+44 0161 449 7442</a></li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <div class="item-holder">
+              <div class="item">
+                <div class="avatar"><img src="assets/images/chitnavis.jpeg" alt="..." class="img-fluid"></div>
+                <div class="text">
+                  <div class="quote"><img src="assets/images/comment.jpeg" alt="..." class="img-fluid"></div>
+                  <p>Mr Bhupal is a highly experienced Consultant Neurosurgeon specialising full time in spinal surgery.
+                     With a private practice based at HCA UK at The Shard, 31 Old Broad Street, 
+                     BMI Shirley Oaks Hospital in Croydon and LycaHealth in Canary Wharf and Kent.
+                  </p><strong class="name">Bhupal Chitnavis</strong>
+                  <ul class="contact-info list-unstyled">
+                      <li><a href="mailto:chitnavissecretary@outlook.com">chitnavissecretary@outlook.com</a></li>
+                      <li><a href="tel:020 7357 0494">+44 020 7357 0494</a></li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <div class="item-holder">
+              <div class="item">
+                <div class="avatar"><img src="assets/images/thawale.jpeg" alt="..." class="img-fluid"></div>
+                <div class="text">
+                  <div class="quote"><img src="assets/images/comment.jpeg" alt="..." class="img-fluid"></div>
+                  <p>Dr Roshan is a Consultant in Pain Medicine & Anaesthetics based in Ashtead, Surrey. 
+                      His areas of expertise include diagnosing and treating complex chronic pain, short
+                      -term persistent pains, abdominal pains, complex regional pain syndrome.
+                  </p><strong class="name">Dr Roshan Thawale</strong>
+                   <ul class="contact-info list-unstyled">
+                      <li><a href="mailto:medicalsecretaries_shirleyoaks@bmihealthcare.co.uk">medicalsecretaries_shirleyoaks@
+                          bmihealthcare.co.uk</a></li>
+                      <li><a href="tel:01372735735">+44 01372735735</a></li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <div id="scrollTop">
+      <div class="d-flex align-items-center justify-content-end"><i class="fa fa-long-arrow-up"></i>To Top</div>
+    </div>
+    <footer class="main-footer bg-gray">
+        <div class="container">
+            <div class="row">
+              <div class="col-lg-3 col-md-6"><a href="#" class="brand">Pain-Diary</a>
+                <ul class="contact-info list-unstyled">
+                  <li><a href="mailto:andreachristabel12@gmail.com">andreachristabel12@gmail.com</a></li>
+                  <li><a href="tel:07456570406">+44 7456570406</a></li>
+                </ul>
+                <ul class="social-icons list-inline">
+                  <li class="list-inline-item"><a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                  <li class="list-inline-item"><a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                  <li class="list-inline-item"><a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                  <li class="list-inline-item"><a href="#" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <h5>Let Us Help You</h5>
+                <ul class="links list-unstyled">
+                  <li> <a href="help.html">More Info on Pain</a></li>
+                  <li> <a href="contact.html">Book a Demo</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <h5>More Info</h5>
+                <ul class="links list-unstyled">
+                  <li> <a href="about.html">About</a></li>
+                  <li> <a href="summary.html">Pain Description</a></li>
+                </ul>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <h5>Terms</h5>
+                <ul class="links list-unstyled">
+                  <li> <a href="privacy.html">Privacy Policy</a></li>
+                  <li> <a href="term.html">Terms and Conditions</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="copyrights">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-7">
+                  <p>&copy; 2022 Christabel. All rights reserved.      </p>
+                </div>
+                <div class="col-md-5 text-right">
+                  <p> <a href="#" class="external">CMM513</a>  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </footer>
+    <!-- Javascript files-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"> </script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="assets/js/front.js"></script>
+    <!---->
+      
+    <!---->
+    <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+    </script>
+  </body>
+</html>

@@ -60,17 +60,17 @@ if(isset($_GET['current-month'])) {
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 30 DAY)";
+	$query = "SELECT user_symptom.id as id, name, pain_level, pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 30 DAY) ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
-		$chart_query = "SELECT name, sum(pain_level) as level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 30 DAY) GROUP BY name";
+		$chart_query = "SELECT name, avg(pain_level) as level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 30 DAY) GROUP BY name";
 		$chart_result = $db->query($chart_query);
 		if($chart_result) {
 			$charts = $chart_result->fetch_all(MYSQLI_ASSOC);
 			$dashboard = "Current Month";
 			//print_r($charts);
-			include 'dashboard.html.php';
+			include 'report.html.php';
 			exit();
 		}else {
 			echo $db->error;
@@ -94,17 +94,17 @@ if(isset($_GET['last-quarter'])) {
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 90 DAY)";
+	$query = "SELECT user_symptom.id as id, name, pain_level, pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 90 DAY) ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
-		$chart_query = "SELECT name, sum(pain_level) as level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 90 DAY) GROUP BY name";
+		$chart_query = "SELECT name, avg(pain_level) as level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 90 DAY) GROUP BY name";
 		$chart_result = $db->query($chart_query);
 		if($chart_result) {
 			$charts = $chart_result->fetch_all(MYSQLI_ASSOC);
 			$dashboard = "Last Quarter";
 			//print_r($charts);
-			include 'dashboard.html.php';
+			include 'report.html.php';
 			exit();
 		}else {
 			echo $db->error;
@@ -128,17 +128,17 @@ if(isset($_GET['this-week'])) {
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 7 DAY)";
+	$query = "SELECT user_symptom.id as id, name, pain_level, pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 7 DAY) ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
-		$chart_query = "SELECT name, sum(pain_level) as level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 7 DAY) GROUP BY name";
+		$chart_query = "SELECT name, avg(pain_level) as level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 7 DAY) GROUP BY name";
 		$chart_result = $db->query($chart_query);
 		if($chart_result) {
 			$charts = $chart_result->fetch_all(MYSQLI_ASSOC);
 			$dashboard = "This Week";
 			//print_r($charts);
-			include 'dashboard.html.php';
+			include 'report.html.php';
 			exit();
 		}else {
 			echo $db->error;
@@ -163,14 +163,15 @@ if (isset($_POST['submit-update']) && $_POST['submit-update'] == "Update") {
 
 	$note = $_POST['note'];
 	$location = $_POST['location'];
+	$duration = $_POST['duration'];
 	$reflection = $_POST['reflection'];
 	$other_symptom = $_POST['other-symptom'];
 	$agg_factor = $_POST['agg-factor'];
 	$symptom_id = $_POST['symptom_id'];
 	
-	$sql = "UPDATE user_symptom SET daily_reflection=?, note=?, location=?, other_symptoms=?, agg_factors=? WHERE id = ?";
+	$sql = "UPDATE user_symptom SET daily_reflection=?, pain_duration=?, note=?, location=?, other_symptoms=?, agg_factors=? WHERE id = ?";
 	$stmt = $db->prepare($sql);
-	$stmt->bind_param('sssssi', $reflection, $note, $location, $other_symptom, $agg_factor, $symptom_id);
+	$stmt->bind_param('sissssi', $reflection, $duration, $note, $location, $other_symptom, $agg_factor, $symptom_id);
 
 	if ($stmt->execute()){
 		$_SESSION['message'] = "Symptom Update successful";
@@ -189,7 +190,7 @@ if (isset($_POST['get-detail']) && $_POST['get-detail'] == "Detail") {
 	include("../assets/databaseConnection.php");
 	$symptom_id = $_POST['symptom_id'];
 	try{
-		$query = "SELECT user_symptom.id as id, name, pain_level, daily_reflection, note, location, other_symptoms, agg_factors FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.id = $symptom_id";
+		$query = "SELECT user_symptom.id as id, name, pain_level, pain_duration, daily_reflection, note, location, other_symptoms, agg_factors FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.id = $symptom_id";
 		$result = $db->query($query);
 		if($result){
 			$symptoms = $result->fetch_all(MYSQLI_ASSOC);
@@ -207,13 +208,45 @@ if (isset($_POST['get-detail']) && $_POST['get-detail'] == "Detail") {
 
 }
 
+// show report
+if (isset($_GET['report'])) {
+	include("../assets/databaseConnection.php");
+$user_id = $_SESSION['userid'];
+
+try{
+	// DATEADD(WEEK, -1, GETUTCDATE())
+	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date, pain_duration FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
+	$result = $db->query($query);
+	if($result){
+		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
+		$chart_query = "SELECT name, avg(pain_level) as level FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id GROUP BY name";
+		$chart_result = $db->query($chart_query);
+		if($chart_result) {
+			$charts = $chart_result->fetch_all(MYSQLI_ASSOC);
+			$dashboard = "Over All";
+			//print_r($charts);
+			include 'report.html.php';
+			exit();
+		}else {
+			echo $db->error;
+		}
+	}else{
+	  $_SESSION['message'] = 'Error occured '. $db->error;
+	  include 'message.html.php';
+	}
+  }catch(Exception $ex){
+	$_SESSION['message'] = 'Error occured '. $ex;
+	include 'message.html.php';
+  }   
+}
+
 if (isset($_GET['symptoms'])) {
 	// connect database
 	include("../assets/databaseConnection.php");
 	$user_id = $_SESSION['userid'];
 
 	try{
-		$query = "SELECT user_symptom.id as id, name, pain_level FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id";
+		$query = "SELECT user_symptom.id as id, name, pain_level, pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
 		$result = $db->query($query);
 		if($result){
 			$symptoms = $result->fetch_all(MYSQLI_ASSOC);
@@ -237,14 +270,15 @@ if (isset($_POST['submit-pain']) && $_POST['submit-pain'] == "Submit") {
 	$user_id = $_SESSION['userid'];
 	$symptom_id = $_POST['symptom'];
 	$pain_level = $_POST['pain-level'];
+	$duration = $_POST['duration'];
 	$note = $_POST['note'];
 	$location = $_POST['location'];
 	$reflection = $_POST['reflection'];
 	$other_symptom = $_POST['other-symptom'];
 	$agg_factor = $_POST['agg-factor'];
 	
-	$sql = "INSERT INTO user_symptom (user_id, symptom_id, pain_level, daily_reflection, note, location, other_symptoms, agg_factors) 
-	VALUES ('$user_id', '$symptom_id', '$pain_level', '$reflection', '$note', '$location', '$other_symptom', '$agg_factor')";
+	$sql = "INSERT INTO user_symptom (user_id, symptom_id, pain_level, pain_duration, daily_reflection, note, location, other_symptoms, agg_factors) 
+	VALUES ('$user_id', '$symptom_id', '$pain_level', '$duration', '$reflection', '$note', '$location', '$other_symptom', '$agg_factor')";
 
 	if (mysqli_query($db , $sql)) {
 		$_SESSION['message'] = "Symptom addition successful";
@@ -278,18 +312,18 @@ if (isset($_GET['symptom-form'])) {
 	  }   
 }
 
-// load dash user dashboard
+// load user dashboard
 // connect database
 include("../assets/databaseConnection.php");
 $user_id = $_SESSION['userid'];
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
+	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date, pain_duration FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
-		$chart_query = "SELECT name, sum(pain_level) as level FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id GROUP BY name";
+		$chart_query = "SELECT name, avg(pain_level) as level FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_id = $user_id GROUP BY name";
 		$chart_result = $db->query($chart_query);
 		if($chart_result) {
 			$charts = $chart_result->fetch_all(MYSQLI_ASSOC);

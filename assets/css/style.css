@@ -519,7 +519,7 @@ section.extra-features .item p {
 
 /*
 * ==========================================================
-*     TESTIMONIALS SECTION
+*     SPECILIST SECTION
 * ==========================================================
 */
 section.testimonials .owl-carousel .owl-stage-outer {
@@ -568,7 +568,7 @@ section.testimonials .avatar {
   box-shadow: -5.665px 9.429px 35px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* Testimonials Media Query ------------------------- */
+/* testimonials Media Query ------------------------- */
 @media (max-width: 1199px) {
   section.testimonials .item {
     -webkit-box-shadow: -5.665px 9.429px 25px 0px rgba(0, 0, 0, 0.2);
