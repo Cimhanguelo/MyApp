@@ -242,7 +242,7 @@
                 labels: label_values,
                 datasets: [{
                   data: data_values,
-                  label: 'Pain Diary Chart',
+                  label: 'Average Pain Severity',
                   lineTension: 0,
                   backgroundColor: 'transparent',
                   borderColor: '#007bff',
@@ -254,7 +254,7 @@
                 scales: {
                   yAxes: [{
                     ticks: {
-                      beginAtZero: true
+                      beginAtZero: false
                     }
                   }]
                 },

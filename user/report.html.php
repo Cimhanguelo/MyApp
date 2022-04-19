@@ -289,7 +289,7 @@
                 labels: label_values,
                 datasets: [{
                   data: data_values,
-                  label: 'Average pain severity',
+                  label: 'Average Pain Severity',
                   lineTension: 0,
                   backgroundColor: 'transparent',
                   borderColor: '#007bff',
