@@ -71,6 +71,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="?symptom-form" aria-label="Add a new report">
+              <span data-feather="plus-circle"></span>
+              Add Symptom
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="?report">
               <span data-feather="bar-chart-2"></span>
               Reports

@@ -10,5 +10,5 @@
 		}
 		return mysql_real_escape_string($str);
 	}
-	include 'password-reset.html.php';
+	include 'reset-password.html.php';
 ?>

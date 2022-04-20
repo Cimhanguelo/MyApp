@@ -197,7 +197,7 @@
                         <td><?php echo $symptom['date'] ?></td>
                         <td>
                             <div class="progress" style="margin-top: 5px; height: 20px">
-                                <div class="progress-bar" role="progressbar" style="width: <?php echo ($symptom['pain_level']/10)*100?>%;  background-color: <?php if ($symptom['pain_level'] < 7) { echo '#FFBF00';  } else { echo 'red'; } ?>;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"><?php echo $symptom['pain_level'] ?></div>
+                                <div class="progress-bar" role="progressbar" style="width: <?php echo ($symptom['pain_level']/10)*100?>%;  background-color: <?php if ($symptom['pain_level'] <= 2) { echo '#4BB543'; } else if ($symptom['pain_level'] < 7) { echo '#FFBF00';  } else { echo 'red'; }?>;" aria-valuenow="4" aria-valuemin="0" aria-valuemax="10"><?php echo $symptom['pain_level'] ?></div>
                             </div>
                         </td>
                         <td><?php echo $symptom['pain_duration'] ?></td>
