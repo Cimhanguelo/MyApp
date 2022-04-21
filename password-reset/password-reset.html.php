@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PainDiary</title>
+    <title>Password Reset</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -27,20 +27,23 @@
   <body>
     <!-- navbar-->
     <header class="header">
-      <nav class="navbar navbar-expand-lg fixed-top"><a class="logo" href="index.html">
-        <img src="../assets/images/stockproperv.png" alt="stockproper" height="70">
+      <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top"><a class="logo" href="index.html">
+        <img src="images/pain_diary_logo.png" alt="paindiary" height="60">
       </a>
         <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
-          <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
-            <li class="nav-item"><a href="../pricing.html" class="nav-link link-scroll">Pricing</a></li>
-            <li class="nav-item"><a href="../about.html" class="nav-link link-scroll">About</a></li>
-            <li class="nav-item"><a href="../contact.html" class="nav-link link-scroll active">Help Center</a></li>
-            <li class="nav-item"><a href="../contact.html" class="nav-link">Book a Demo</a></li>
+          <ul class="navbar-nav ml-auto align-items-start align-items-lg-center" style="margin-left: 25%;">
+            <li class="nav-item"><a href="index.html" class="nav-link link-scroll ">Home</a></li>
+            <li class="nav-item"><a href="help.html" class="nav-link link-scroll">Help</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link link-scroll active">About</a></li>
+            <li class="nav-item"><a href="term.html" class="nav-link link-scroll">Terms</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
           </ul>
-          <div class="CTA"><a href="#" data-toggle="modal" data-target="#exampleModallogin" class="btn btn-outline-primary" style="margin-left: 20px;">Login</a></div>
+          <div class="navbar-text" style="margin-left: 15%;">
+            <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-primary" style="margin-left: 20px; border-radius: 2px;">Login</a>
+          </div>
           <div class="navbar-text">   
-            <!-- Button trigger modal--><a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary navbar-btn btn-shadow btn-gradient">Register</a>
+            <!-- Button trigger modal--><a href="#" data-toggle="modal" data-target="#registerModal" class="btn btn-primary navbar-btn btn-shadow" style="border-radius: 2px;">Register</a>
           </div>
         </div>
       </nav>
