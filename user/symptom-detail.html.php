@@ -173,8 +173,13 @@
                     <h6 class="mb-0">Pain Duration (Hours)</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    <input type="number" id="textInput" class="form-control" name="duration" placeholder="Duration" value = "<?php echo $symptom['pain_duration'] ?>" required>
-                  </div>
+                        <span><h6>Start Time</h6></span>
+                        <input type="datetime-local" id="textInput" class="form-control" name="start-time" placeholder="Start Time" value = "<?php echo $symptom['start_time'] ?>" required>
+                    </div>
+                    <div class="col-sm-9 text-secondary" style="margin-top: 10px; margin-left: 140px">
+                        <span><h6>End Time</h6></span>
+                        <input type="datetime-local" id="textInput" class="form-control" name="end-time" placeholder="End Time" value = "<?php echo $symptom['end_time'] ?>" required>
+                    </div>
                 </div>
                 <hr>
                 <div class="row">

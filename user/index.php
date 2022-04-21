@@ -163,15 +163,16 @@ if (isset($_POST['submit-update']) && $_POST['submit-update'] == "Update") {
 
 	$note = $_POST['note'];
 	$location = $_POST['location'];
-	$duration = $_POST['duration'];
+	$start_time = $_POST['start-time'];
+	$end_time = $_POST['end-time'];
 	$reflection = $_POST['reflection'];
 	$other_symptom = $_POST['other-symptom'];
 	$agg_factor = $_POST['agg-factor'];
 	$symptom_id = $_POST['symptom_id'];
 	
-	$sql = "UPDATE user_symptom SET daily_reflection=?, pain_duration=?, note=?, location=?, other_symptoms=?, agg_factors=? WHERE id = ?";
+	$sql = "UPDATE user_symptom SET daily_reflection=?, start_time=?, end_time=?, note=?, location=?, other_symptoms=?, agg_factors=? WHERE id = ?";
 	$stmt = $db->prepare($sql);
-	$stmt->bind_param('sissssi', $reflection, $duration, $note, $location, $other_symptom, $agg_factor, $symptom_id);
+	$stmt->bind_param('sisssssi', $reflection, $start_time, $end_time, $note, $location, $other_symptom, $agg_factor, $symptom_id);
 
 	if ($stmt->execute()){
 		$_SESSION['message'] = "Symptom Update successful";
@@ -190,7 +191,7 @@ if (isset($_POST['get-detail']) && $_POST['get-detail'] == "Detail") {
 	include("../assets/databaseConnection.php");
 	$symptom_id = $_POST['symptom_id'];
 	try{
-		$query = "SELECT user_symptom.id as id, name, pain_level, pain_duration, daily_reflection, note, location, other_symptoms, agg_factors FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.id = $symptom_id";
+		$query = "SELECT user_symptom.id as id, name, pain_level, start_time, end_time, daily_reflection, note, location, other_symptoms, agg_factors FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.id = $symptom_id";
 		$result = $db->query($query);
 		if($result){
 			$symptoms = $result->fetch_all(MYSQLI_ASSOC);
@@ -215,7 +216,7 @@ $user_id = $_SESSION['userid'];
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date, pain_duration FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
+	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date, (end_time - start_time) as pain_duration FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
@@ -246,7 +247,7 @@ if (isset($_GET['symptoms'])) {
 	$user_id = $_SESSION['userid'];
 
 	try{
-		$query = "SELECT user_symptom.id as id, name, pain_level, pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
+		$query = "SELECT user_symptom.id as id, name, pain_level, (end_time - start_time) as pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
 		$result = $db->query($query);
 		if($result){
 			$symptoms = $result->fetch_all(MYSQLI_ASSOC);
@@ -270,15 +271,16 @@ if (isset($_POST['submit-pain']) && $_POST['submit-pain'] == "Submit") {
 	$user_id = $_SESSION['userid'];
 	$symptom_id = $_POST['symptom'];
 	$pain_level = $_POST['pain-level'];
-	$duration = $_POST['duration'];
+	$start_time = $_POST['start-time'];
+	$end_time = $_POST['end-time'];
 	$note = $_POST['note'];
 	$location = $_POST['location'];
 	$reflection = $_POST['reflection'];
 	$other_symptom = $_POST['other-symptom'];
 	$agg_factor = $_POST['agg-factor'];
 	
-	$sql = "INSERT INTO user_symptom (user_id, symptom_id, pain_level, pain_duration, daily_reflection, note, location, other_symptoms, agg_factors) 
-	VALUES ('$user_id', '$symptom_id', '$pain_level', '$duration', '$reflection', '$note', '$location', '$other_symptom', '$agg_factor')";
+	$sql = "INSERT INTO user_symptom (user_id, symptom_id, pain_level, start_time, end_time, daily_reflection, note, location, other_symptoms, agg_factors) 
+	VALUES ('$user_id', '$symptom_id', '$pain_level', '$start_time', '$end_time', '$reflection', '$note', '$location', '$other_symptom', '$agg_factor')";
 
 	if (mysqli_query($db , $sql)) {
 		$_SESSION['message'] = "Symptom addition successful";
@@ -319,7 +321,7 @@ $user_id = $_SESSION['userid'];
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date, pain_duration FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
+	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date, (end_time - start_time) as pain_duration FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);

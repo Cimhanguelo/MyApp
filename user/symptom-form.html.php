@@ -159,10 +159,10 @@
                         </div>
                         <div class="col-sm-9 text-secondary">
                         <select id="inputSelect"  name="pain-level" class="form-select" required>
-                    <?php  for ($level = 1; $level<=10; $level++): ?>
-                      <option value = "<?php echo $level?>"> <?php echo $level?> <option>
-                    <?php endfor; ?>
-                  </select>
+                          <?php  for ($level = 1; $level<=10; $level++): ?>
+                            <option value = "<?php echo $level?>"> <?php echo $level?> <option>
+                          <?php endfor; ?>
+                        </select>
                         </div>
                     </div>
                   <hr>
@@ -171,16 +171,28 @@
                         <h6 class="mb-0">Pain Location</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <input type="text" id="textInput" class="form-control" name="location" placeholder="Location" required>
+                    <select id="inputSelect"  name="location" class="form-select" required>
+                      <option value = "Abdomen">Abdomen</option>
+                      <option value = "Chest">Chest</option>
+                      <option value = "Head">Head</option>
+                      <option value = "Neck">Neck</option>
+                      <option value = "Leg">Leg</option>
+                      <option value = "Back">Back</option>
+                    </select>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-sm-3">
-                        <h6 class="mb-0">Pain Duration (Hours)</h6>
+                        <h6 class="mb-0">Pain Duration</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                        <input type="number" id="textInput" class="form-control" name="duration" placeholder="Duration" required>
+                        <span><h6>Start Time</h6></span>
+                        <input type="datetime-local" id="textInput" class="form-control" name="start-time" placeholder="Start Time" required>
+                    </div>
+                    <div class="col-sm-9 text-secondary" style="margin-top: 10px; margin-left: 140px">
+                        <span><h6>End Time</h6></span>
+                        <input type="datetime-local" id="textInput" class="form-control" name="end-time" placeholder="End Time" required>
                     </div>
                 </div>
                 <hr>
