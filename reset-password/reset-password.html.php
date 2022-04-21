@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>PainDiary</title>
+    <title>Password Reset</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -28,16 +28,28 @@
     <!-- navbar-->
     <header class="header">
       <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top"><a class="logo" href="index.html">
+<<<<<<< HEAD:password-reset/password-reset.html.php
+        <img src="images/pain_diary_logo.png" alt="paindiary" height="60">
+=======
         <img src="../assets/images/pain_diary_logo.png" alt="paindiary" height="60">
+>>>>>>> 5f3990687190113653540360b97225c09d30abd4:reset-password/reset-password.html.php
       </a>
        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto align-items-start align-items-lg-center" style="margin-left: 25%;">
+<<<<<<< HEAD:password-reset/password-reset.html.php
+            <li class="nav-item"><a href="index.html" class="nav-link link-scroll ">Home</a></li>
+            <li class="nav-item"><a href="help.html" class="nav-link link-scroll">Help</a></li>
+            <li class="nav-item"><a href="about.html" class="nav-link link-scroll active">About</a></li>
+            <li class="nav-item"><a href="term.html" class="nav-link link-scroll">Terms</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+=======
             <li class="nav-item"><a href="../index.html" class="nav-link link-scroll ">Home</a></li>
             <li class="nav-item"><a href="../help.html" class="nav-link link-scroll">Help</a></li>
             <li class="nav-item"><a href="../about.html" class="nav-link link-scroll active">About</a></li>
             <li class="nav-item"><a href="../term.html" class="nav-link link-scroll">Terms</a></li>
             <li class="nav-item"><a href="../contact.html" class="nav-link">Contact</a></li>
+>>>>>>> 5f3990687190113653540360b97225c09d30abd4:reset-password/reset-password.html.php
           </ul>
           <div class="navbar-text" style="margin-left: 15%;">
             <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-primary" style="margin-left: 20px; border-radius: 2px;">Login</a>
