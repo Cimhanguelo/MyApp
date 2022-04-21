@@ -172,43 +172,7 @@
   </div>
 </div>
 <footer class="main-footer bg-gray" style="margin-left: 250px">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6"><a href="#" class="brand">PainDiary</a>
-            <ul class="contact-info list-unstyled">
-              <li><a href="mailto:sales@bella.com">support@paindiary.com</a></li>
-              <li><a href="tel:07776795096">+445678909888</a></li>
-            </ul>
-            <ul class="social-icons list-inline">
-              <li class="list-inline-item"><a href="#" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-              <li class="list-inline-item"><a href="#" target="_blank" title="Pinterest"><i class="fa fa-pinterest"></i></a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5>Let Us Help You</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#">Help Center</a></li>
-              <li> <a href="#">Book a Demo</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5>More Info</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#">About</a></li>
-              <li> <a href="#">Enquiry</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-3 col-md-6">
-            <h5>Terms</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#">Privacy Policy</a></li>
-              <li> <a href="#">Terms and Conditions</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+<div class="container">
       <div class="copyrights">
         <div class="container">
           <div class="row">
