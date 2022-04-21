@@ -174,11 +174,11 @@
                   </div>
                   <div class="col-sm-9 text-secondary">
                         <span><h6>Start Time</h6></span>
-                        <input type="datetime-local" id="textInput" class="form-control" name="start-time" placeholder="Start Time" value = "<?php echo $symptom['start_time'] ?>" required>
+                        <input type="datetime-local" id="textInput" class="form-control" name="start-time" value = "<?php echo date('Y-m-d\TH:i', strtotime($symptom['start_time'])) ?>" required>
                     </div>
                     <div class="col-sm-9 text-secondary" style="margin-top: 10px; margin-left: 140px">
                         <span><h6>End Time</h6></span>
-                        <input type="datetime-local" id="textInput" class="form-control" name="end-time" placeholder="End Time" value = "<?php echo $symptom['end_time'] ?>" required>
+                        <input type="datetime-local" id="textInput" class="form-control" name="end-time" value = "<?php echo date('Y-m-d\TH:i', strtotime($symptom['end_time'])) ?>" required>
                     </div>
                 </div>
                 <hr>

@@ -128,7 +128,7 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-margin">
             <div class="col-lg-6 text order-2 order-lg-1">
-                <h4><?php echo $_SESSION['message']; ?></h4>
+                <h4><?php echo $_SESSION['message'] ?></h4>
                 <a href ="<?php echo $back; unset($_SESSION['message']) ?>" class="btn btn-primary" > <span data-feather="arrow-left"></span> Back</a>
             </div>
             <div class="line"></div>

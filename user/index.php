@@ -60,7 +60,7 @@ if(isset($_GET['current-month'])) {
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 30 DAY) ORDER BY user_symptom.date DESC";
+	$query = "SELECT user_symptom.id as id, name, pain_level, TIMEDIFF(end_time, start_time) as pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 30 DAY) ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
@@ -94,7 +94,7 @@ if(isset($_GET['last-quarter'])) {
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 90 DAY) ORDER BY user_symptom.date DESC";
+	$query = "SELECT user_symptom.id as id, name, pain_level, TIMEDIFF(end_time, start_time) as pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 90 DAY) ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
@@ -128,7 +128,7 @@ if(isset($_GET['this-week'])) {
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 7 DAY) ORDER BY user_symptom.date DESC";
+	$query = "SELECT user_symptom.id as id, name, pain_level, TIMEDIFF(end_time, start_time) as pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id AND DATE(user_symptom.date) > (NOW() - INTERVAL 7 DAY) ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
@@ -172,7 +172,7 @@ if (isset($_POST['submit-update']) && $_POST['submit-update'] == "Update") {
 	
 	$sql = "UPDATE user_symptom SET daily_reflection=?, start_time=?, end_time=?, note=?, location=?, other_symptoms=?, agg_factors=? WHERE id = ?";
 	$stmt = $db->prepare($sql);
-	$stmt->bind_param('sisssssi', $reflection, $start_time, $end_time, $note, $location, $other_symptom, $agg_factor, $symptom_id);
+	$stmt->bind_param('sssssssi', $reflection, $start_time, $end_time, $note, $location, $other_symptom, $agg_factor, $symptom_id);
 
 	if ($stmt->execute()){
 		$_SESSION['message'] = "Symptom Update successful";
@@ -216,7 +216,7 @@ $user_id = $_SESSION['userid'];
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date, (end_time - start_time) as pain_duration FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
+	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date, TIMEDIFF(end_time, start_time) as pain_duration FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
@@ -247,7 +247,7 @@ if (isset($_GET['symptoms'])) {
 	$user_id = $_SESSION['userid'];
 
 	try{
-		$query = "SELECT user_symptom.id as id, name, pain_level, (end_time - start_time) as pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
+		$query = "SELECT user_symptom.id as id, name, pain_level, TIMEDIFF(end_time, start_time) as pain_duration, user_symptom.date as date FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
 		$result = $db->query($query);
 		if($result){
 			$symptoms = $result->fetch_all(MYSQLI_ASSOC);
@@ -321,7 +321,7 @@ $user_id = $_SESSION['userid'];
 
 try{
 	// DATEADD(WEEK, -1, GETUTCDATE())
-	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date, (end_time - start_time) as pain_duration FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
+	$query = "SELECT user_symptom.id as id, name, pain_level, user_symptom.date as date, TIMEDIFF(end_time, start_time) as pain_duration FROM user_symptom INNER JOIN symptom ON symptom_id = symptom.id WHERE user_symptom.user_id = $user_id ORDER BY user_symptom.date DESC";
 	$result = $db->query($query);
 	if($result){
 		$symptoms = $result->fetch_all(MYSQLI_ASSOC);
