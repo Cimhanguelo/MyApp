@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2022 at 10:40 AM
+-- Generation Time: Apr 21, 2022 at 01:37 PM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 7.0.13
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pain_diairy`
+-- Database: `paindiary`
 --
 
 -- --------------------------------------------------------
@@ -82,7 +82,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `full_name`, `username`, `email`, `password`, `active`, `date`, `gender`, `dob`) VALUES
-(1, 'Hammed Taofeek', 'htolajide', 'htolajide@yahoo.com', 'a6b944fc65c184ca6b096593a895ba76', 0, '2022-03-22 20:05:50', 'Male', '2022-03-30');
+(1, 'Hammed Taofeek', 'htolajide', 'htolajide@yahoo.com', 'a6b944fc65c184ca6b096593a895ba76', 0, '2022-03-22 20:05:50', 'Male', '2022-03-30'),
+(2, 'Hammed Kabiru', 'kabiru', 'kabirhammed@yahoo.com', 'c1621fbecc04b7b7911b982fe585c8d8', 0, '2022-04-06 14:32:40', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -95,6 +96,8 @@ CREATE TABLE `user_symptom` (
   `user_id` int(11) NOT NULL,
   `symptom_id` int(11) NOT NULL,
   `pain_level` int(11) DEFAULT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
   `daily_reflection` varchar(255) NOT NULL,
   `note` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
@@ -108,16 +111,19 @@ CREATE TABLE `user_symptom` (
 -- Dumping data for table `user_symptom`
 --
 
-INSERT INTO `user_symptom` (`id`, `user_id`, `symptom_id`, `pain_level`, `daily_reflection`, `note`, `location`, `other_symptoms`, `charateristics`, `agg_factors`, `date`) VALUES
-(4, 1, 2, 8, '', '', 'Back', '', '', '', '2022-04-05 15:29:07'),
-(5, 1, 2, 8, '', '', 'Back', '', '', '', '2022-04-05 15:29:56'),
-(7, 1, 1, 4, '', '', 'Knee', '', '', '', '2022-04-05 16:20:45'),
-(8, 1, 5, 6, '', '', 'Neck', '', '', '', '2022-04-05 16:48:56'),
-(9, 1, 7, 5, '', '', 'Head', '', '', '', '2022-04-05 16:53:14'),
-(10, 1, 8, 5, '', '', 'Testis', '', '', '', '2022-04-05 17:30:51'),
-(11, 1, 8, 5, '', '', 'Testis', '', '', '', '2022-04-05 17:32:35'),
-(12, 1, 8, 5, '', '', 'Testis', '', '', '', '2022-04-05 17:32:57'),
-(13, 1, 9, 9, '', '', 'Arm', '', '', '', '2022-04-05 18:21:22');
+INSERT INTO `user_symptom` (`id`, `user_id`, `symptom_id`, `pain_level`, `start_time`, `end_time`, `daily_reflection`, `note`, `location`, `other_symptoms`, `charateristics`, `agg_factors`, `date`) VALUES
+(4, 1, 2, 8, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 'I have been experiencing this for a month', 'Back', '', '', '', '2022-04-05 15:29:07'),
+(5, 1, 2, 8, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'Back', '', '', '', '2022-04-05 15:29:56'),
+(7, 1, 1, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'Knee', '', '', '', '2022-04-05 16:20:45'),
+(8, 1, 5, 6, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'Neck', '', '', '', '2022-04-05 16:48:56'),
+(9, 1, 7, 5, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'Head', '', '', '', '2022-04-05 16:53:14'),
+(10, 1, 8, 5, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'Testis', '', '', '', '2022-04-05 17:30:51'),
+(11, 1, 8, 5, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'Testis', '', '', '', '2022-04-05 17:32:35'),
+(12, 1, 8, 5, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'Testis', '', '', '', '2022-04-05 17:32:57'),
+(13, 1, 9, 9, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'Arm', '', '', '', '2022-04-05 18:21:22'),
+(14, 1, 7, 6, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', 'Head', '', '', '', '2022-04-06 10:12:22'),
+(15, 1, 7, 5, '2022-04-11 10:11:00', '2022-04-14 10:11:00', '', '', 'Head', '', '', '', '2022-04-13 12:09:03'),
+(16, 1, 9, 6, '2022-04-13 10:02:00', '2022-04-14 10:02:00', '', 'I have been experiencing this for a month', 'Knee', '', '', '', '2022-04-18 13:08:12');
 
 --
 -- Indexes for dumped tables
@@ -156,12 +162,12 @@ ALTER TABLE `symptom`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user_symptom`
 --
 ALTER TABLE `user_symptom`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --
