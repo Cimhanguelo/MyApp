@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Password Reset</title>
+    <title>Reset Password</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
    <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
-    <!-- Custom Font Icons CSS-->../
+    <!-- Custom Font Icons CSS-->
     <link rel="stylesheet" href="../assets/css/landy-iconfont.css">
     <!-- Google fonts - Open Sans../-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800">
@@ -27,32 +27,20 @@
   <body>
     <!-- navbar-->
     <header class="header">
-      <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top"><a class="logo" href="index.html">
-<<<<<<< HEAD:password-reset/password-reset.html.php
+      <nav class="navbar navbar-dark bg-dark navbar-expand-lg fixed-top"><a class="logo" href="../index.html">
         <img src="images/pain_diary_logo.png" alt="paindiary" height="60">
-=======
-        <img src="../assets/images/pain_diary_logo.png" alt="paindiary" height="60">
->>>>>>> 5f3990687190113653540360b97225c09d30abd4:reset-password/reset-password.html.php
       </a>
        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
-          <ul class="navbar-nav ml-auto align-items-start align-items-lg-center" style="margin-left: 25%;">
-<<<<<<< HEAD:password-reset/password-reset.html.php
-            <li class="nav-item"><a href="index.html" class="nav-link link-scroll ">Home</a></li>
-            <li class="nav-item"><a href="help.html" class="nav-link link-scroll">Help</a></li>
-            <li class="nav-item"><a href="about.html" class="nav-link link-scroll active">About</a></li>
-            <li class="nav-item"><a href="term.html" class="nav-link link-scroll">Terms</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-=======
+          <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
             <li class="nav-item"><a href="../index.html" class="nav-link link-scroll ">Home</a></li>
             <li class="nav-item"><a href="../help.html" class="nav-link link-scroll">Help</a></li>
-            <li class="nav-item"><a href="../about.html" class="nav-link link-scroll active">About</a></li>
+            <li class="nav-item"><a href="../about.html" class="nav-link link-scroll">About</a></li>
             <li class="nav-item"><a href="../term.html" class="nav-link link-scroll">Terms</a></li>
             <li class="nav-item"><a href="../contact.html" class="nav-link">Contact</a></li>
->>>>>>> 5f3990687190113653540360b97225c09d30abd4:reset-password/reset-password.html.php
           </ul>
-          <div class="navbar-text" style="margin-left: 15%;">
-            <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-primary" style="margin-left: 20px; border-radius: 2px;">Login</a>
+          <div class="navbar-text">
+            <a href="#" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-primary" style="border-radius: 2px;">Login</a>
           </div>
           <div class="navbar-text">   
             <!-- Button trigger modal--><a href="#" data-toggle="modal" data-target="#registerModal" class="btn btn-primary navbar-btn btn-shadow" style="border-radius: 2px;">Register</a>
@@ -213,7 +201,7 @@
         <input type="email" style="margin-bottom: 10px" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" style="margin-bottom: 10px">New Password</label>
         <input type="password" style="margin-bottom: 10px" name="password" id="password" class="form-control" placeholder="Password" required>
-		<label for="reenterPassword" style="margin-bottom: 10px" >Confirm Password</label>
+		    <label for="reenterPassword" style="margin-bottom: 10px" >Confirm Password</label>
         <input type="password" style="margin-bottom: 10px" name="password2" id="password" class="form-control" placeholder="Password" required>
         <input type="hidden" name="action" value="login">
         <input class="btn btn-lg btn-secondary center-block" style="border-radius: 5px; margin-top: 10px" type="submit" name="submit" value="Submit"/>

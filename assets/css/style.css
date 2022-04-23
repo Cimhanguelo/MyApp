@@ -349,6 +349,17 @@ nav.navbar .navbar-toggler.active span:nth-of-type(2) {
   opacity: 0;
 }
 
+#navbarSupportedContent ul{
+  margin-left: 25%; 
+  margin-right: 15%;
+}
+
+@media (max-width: 990px){
+  #navbarSupportedContent ul{
+    margin-left: 2%; 
+  }
+} 
+
 /* Navbar Mediaquery ----------------------------------- */
 @media (max-width: 1199px) {
   nav.navbar .navbar-btn {
