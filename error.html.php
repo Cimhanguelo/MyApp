@@ -31,7 +31,7 @@
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
           </ul>
-          <div class="CTA"><a href="#" data-toggle="modal" data-target="#exampleModallogin" class="btn btn-outline-primary" style="margin-left: 20px; border-radius: 2px;">Login</a></div>
+          <div class="CTA"><a href="#" data-toggle="modal" data-target="#exampleModallogin" class="btn btn-outline-primary" style="border-radius: 2px;">Login</a></div>
           <div class="navbar-text">   
             <!-- Button trigger modal--><a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary navbar-btn btn-shadow" style="border-radius: 2px;">Register</a>
           </div>
