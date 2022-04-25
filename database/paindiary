@@ -82,8 +82,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `full_name`, `username`, `email`, `password`, `active`, `date`, `gender`, `dob`) VALUES
-(1, 'Hammed Taofeek', 'htolajide', 'htolajide@yahoo.com', 'a6b944fc65c184ca6b096593a895ba76', 0, '2022-03-22 20:05:50', 'Male', '2022-03-30'),
-(2, 'Hammed Kabiru', 'kabiru', 'kabirhammed@yahoo.com', 'c1621fbecc04b7b7911b982fe585c8d8', 0, '2022-04-06 14:32:40', '', '0000-00-00');
+(1, 'Hammed Taofeek', 'Cimhanguelo', 'andreachristabel12@', 'a6b944fc65c184ca6b096593a895ba76', 0, '2022-03-22 20:05:50', 'Female', '2022-03-30'),
 
 -- --------------------------------------------------------
 

@@ -37,7 +37,7 @@
        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto align-items-start align-items-lg-center" style="margin-left: 25%;">
-<<<<<<< HEAD:password-reset/password-reset.html.php
+          <<<<<<< HEAD:password-reset/password-reset.html.php
             <li class="nav-item"><a href="index.html" class="nav-link link-scroll ">Home</a></li>
             <li class="nav-item"><a href="help.html" class="nav-link link-scroll">Help</a></li>
             <li class="nav-item"><a href="about.html" class="nav-link link-scroll active">About</a></li>
@@ -223,7 +223,7 @@
              
             </div>
           </div>
-          <div class="col-lg-6 order-1 order-lg-2"><img src="../assets/images/contact.jpg" alt="..." class="img-fluid"></div>
+          <div class="col-lg-6 order-1 order-lg-2"><img src="../assets/images/reset.jpeg" alt="..." class="img-fluid"></div>
         </div>
       </div>
     </section>
@@ -239,7 +239,7 @@
             <div class="row">
               <div class="col-lg-3 col-md-6"><a href="#" class="brand">Pain-Diary</a>
                 <ul class="contact-info list-unstyled">
-                  <li><a href="mailto:andreachristabel12@gmail.com">andreachristabel12@gmail.com</a></li>
+                  <li><a href="mailto:paindiary5@gmail.com">paindiary5@gmail.com</a></li>
                   <li><a href="tel:07456570406">+44 7456570406</a></li>
                 </ul>
                 <ul class="social-icons list-inline">
