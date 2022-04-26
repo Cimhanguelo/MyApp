@@ -204,7 +204,7 @@
                         </td>
                         <td><?php echo $symptom['pain_duration'] ?></td>
                         <td><?php echo $symptom['note'] ?></td>
-                        <td><?php echo $symptom['reflections'] ?></td>
+                        <td><?php echo $symptom['daily_reflection'] ?></td>
                         </tr>
                     </form>
                     <?php $s_no++; endforeach; } ?>
