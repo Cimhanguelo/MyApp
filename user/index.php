@@ -239,7 +239,7 @@ try{
   }catch(Exception $ex){
 	$_SESSION['message'] = 'Error occured '. $ex;
 	include 'message.html.php';
-	exit
+	exit;
   }   
 }
 
