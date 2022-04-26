@@ -32,18 +32,7 @@
       </a>
        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><span></span><span></span><span></span></button>
         <div id="navbarSupportedContent" class="collapse navbar-collapse">
-<<<<<<< HEAD
-          <ul class="navbar-nav ml-auto align-items-start align-items-lg-center" style="margin-left: 25%;">
-          <<<<<<< HEAD:password-reset/password-reset.html.php
-            <li class="nav-item"><a href="index.html" class="nav-link link-scroll ">Home</a></li>
-            <li class="nav-item"><a href="help.html" class="nav-link link-scroll">Help</a></li>
-            <li class="nav-item"><a href="about.html" class="nav-link link-scroll active">About</a></li>
-            <li class="nav-item"><a href="term.html" class="nav-link link-scroll">Terms</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-=======
-=======
           <ul class="navbar-nav ml-auto align-items-start align-items-lg-center">
->>>>>>> 8db385c9d2ef33a5970bb81819531853222558d0
             <li class="nav-item"><a href="../index.html" class="nav-link link-scroll ">Home</a></li>
             <li class="nav-item"><a href="../help.html" class="nav-link link-scroll">Help</a></li>
             <li class="nav-item"><a href="../about.html" class="nav-link link-scroll">About</a></li>
