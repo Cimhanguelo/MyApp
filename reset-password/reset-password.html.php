@@ -211,7 +211,7 @@
              
             </div>
           </div>
-          <div class="col-lg-6 order-1 order-lg-2"><img src="../assets/images/contact.jpg" alt="..." class="img-fluid"></div>
+          <div class="col-lg-6 order-1 order-lg-2"><img src="../assets/images/reset.jpeg" alt="..." class="img-fluid"></div>
         </div>
       </div>
     </section>
@@ -227,7 +227,7 @@
             <div class="row">
               <div class="col-lg-3 col-md-6"><a href="#" class="brand">Pain-Diary</a>
                 <ul class="contact-info list-unstyled">
-                  <li><a href="mailto:andreachristabel12@gmail.com">andreachristabel12@gmail.com</a></li>
+                  <li><a href="mailto:paindiary5@gmail.com">paindiary5@gmail.com</a></li>
                   <li><a href="tel:07456570406">+44 7456570406</a></li>
                 </ul>
                 <ul class="social-icons list-inline">
