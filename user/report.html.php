@@ -186,6 +186,8 @@
                     <th scope="col">DateTime</th>
                     <th scope="col">Pain Severity</th>
                     <th scope="col">Pain Duration</th>
+                    <th scope="col">Additional Note</th>
+                    <th scope="col">Reflections</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -201,6 +203,8 @@
                             </div>
                         </td>
                         <td><?php echo $symptom['pain_duration'] ?></td>
+                        <td><?php echo $symptom['note'] ?></td>
+                        <td><?php echo $symptom['reflections'] ?></td>
                         </tr>
                     </form>
                     <?php $s_no++; endforeach; } ?>
