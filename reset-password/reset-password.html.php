@@ -86,7 +86,7 @@
                      required
                   />
                   <label class="form-check-label" for="form2Example3">
-                    <br> I Agree to the <a href="term.html">Terms and Conditions</a>
+                    <br> I Agree to the <a href="../term.html">Terms and Conditions</a>
                   </label>
                 </div>
               <div class="form-group">
